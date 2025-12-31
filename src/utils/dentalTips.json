@@ -1,0 +1,62 @@
+{
+  "toothache": {
+    "tip": "Avoid very hot or cold drinks to reduce pain.",
+    "nutrition": ["Calcium-rich foods", "Soft foods"]
+  },
+  "gum pain": {
+    "tip": "Gentle brushing and flossing help reduce inflammation.",
+    "nutrition": ["Spinach", "Oranges", "Yogurt"]
+  },
+  "bad breath": {
+    "tip": "Brush your tongue and drink plenty of water.",
+    "nutrition": ["Apples", "Carrots", "Green tea"]
+  },
+  "cavities": {
+    "tip": "Limit sugary snacks and brush twice a day.",
+    "nutrition": ["Cheese", "Leafy greens", "Milk"]
+  },
+  "sensitive teeth": {
+    "tip": "Use a soft-bristled toothbrush and desensitizing toothpaste.",
+    "nutrition": ["Bananas", "Oatmeal", "Yogurt"]
+  },
+  "plaque": {
+    "tip": "Brush and floss regularly to prevent plaque buildup.",
+    "nutrition": ["Apples", "Celery", "Carrots"]
+  },
+  "tartar": {
+    "tip": "Regular professional cleaning helps remove tartar.",
+    "nutrition": ["Cheese", "Leafy greens", "Almonds"]
+  },
+  "tooth discoloration": {
+    "tip": "Limit coffee, tea, and tobacco to prevent stains.",
+    "nutrition": ["Strawberries", "Watermelon", "Apples"]
+  },
+  "braces care": {
+    "tip": "Use orthodontic toothbrushes and avoid sticky foods.",
+    "nutrition": ["Soft fruits", "Yogurt", "Cheese"]
+  },
+  "oral ulcers": {
+    "tip": "Avoid spicy or acidic foods to reduce irritation.",
+    "nutrition": ["Bananas", "Rice", "Yogurt"]
+  },
+  "dry mouth": {
+    "tip": "Drink water frequently and chew sugar-free gum.",
+    "nutrition": ["Celery", "Cucumber", "Apples"]
+  },
+  "mouth odor": {
+    "tip": "Rinse after meals and brush twice daily.",
+    "nutrition": ["Parsley", "Green tea", "Carrots"]
+  },
+  "oral cancer awareness": {
+    "tip": "Regular screenings help detect problems early.",
+    "nutrition": ["Leafy greens", "Broccoli", "Tomatoes"]
+  },
+  "teeth grinding": {
+    "tip": "Wear a mouth guard and reduce stress.",
+    "nutrition": ["Soft foods", "Bananas", "Yogurt"]
+  },
+  "wisdom teeth": {
+    "tip": "Maintain good hygiene and visit the dentist regularly.",
+    "nutrition": ["Soft foods", "Mashed potatoes", "Soup"]
+  }
+}
