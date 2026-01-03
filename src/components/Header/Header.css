@@ -1,0 +1,91 @@
+.header {
+  width: 100%;
+  height: 416px;
+  background-image: url(../../assets/home_welcome_dental.png);
+}
+
+.header__spacer {
+  display: flex;
+  margin: 0; 
+}
+
+.header__menu {
+  position: relative; /* 🔹 CHANGE: REQUIRED for navigator positioning */
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  margin-left: auto;
+  font-family: Roboto, sans-serif;
+  font-weight: 500;
+  font-size: 16px;
+}
+
+.header__menu-item {
+  background: none;
+  border: none;
+  margin: 0 10px;
+  font-size: 16px;
+  cursor: pointer;
+  color: white; 
+  text-decoration: none; 
+  padding: 8px 0;
+}
+
+
+.header__navigator {
+  position: absolute; /* REQUIRED */
+  bottom: -6px;
+  left: 0;
+  height: 4px;
+  background-color: white;
+  border-radius: 2px;
+  transition: transform 0.3s ease, width 0.3s ease;
+}
+
+.header__signIn {
+  padding: 0 8px;
+  border: 1px solid #007bff;
+  border-radius: 20px;
+  background: none;
+  color: #007bff;
+  cursor: pointer;
+  margin-right: 20px;
+  margin-left: 20px;
+  margin-top: 20px;
+  width: 176px;
+  height: 40px;
+  font-size: 16px;
+  font-family: Roboto, sans-serif;
+}
+
+.header__divider {
+  width: 100%;
+  height: 1px;
+  background-color: #c4c4c4;
+  margin: 0; 
+}
+
+.header__title {
+  font-size: 24px;
+  font-family: Roboto Slab, serif;
+  text-align: center;
+  color: #ffffff;
+  margin-top: 100px;
+  margin-left: 50px;
+}
+.header__page-title {
+  font-family: "Roboto", sans-serif;
+  text-align: center;
+  color: #000;
+  margin-top: 30px;
+}
+
+.header__book-app {
+  padding: 10px 20px;
+  background-color: #007bff;
+  color: #ffffff;
+  border: none;
+  border-radius: 20px;
+  font-size: 16px;
+  cursor: pointer;
+}
