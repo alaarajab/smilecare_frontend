@@ -8,6 +8,8 @@ import LoginModal from "../LoginModal/LoginModal";
 import RegisterModal from "../RegisterModal/RegisterModal";
 import DentalEducation from "../DentalEducation/DentalEducation";
 import Contact from "../Contact/Contact";
+import Home from "../Home/Home";
+import Services from "../Services/Services";
 
 function App() {
   const [loginOpen, setLoginOpen] = useState(false);
@@ -19,9 +21,10 @@ function App() {
         <Header onLoginClick={() => setLoginOpen(true)} />
 
         <Routes>
-          <Route path="/" element={<DentalEducation />} />
+          <Route path="/" element={<Home />} />
           <Route path="/dental-education" element={<DentalEducation />} />
           <Route path="/contact" element={<Contact />} />
+          <Route path="/services" element={<Services />} />
         </Routes>
 
         {/* Global modals */}

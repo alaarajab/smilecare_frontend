@@ -56,6 +56,12 @@
   height: 40px;
   font-size: 16px;
   font-family: Roboto, sans-serif;
+  transition: background-color 0.2s ease, color 0.2s ease;
+}
+.header__signIn:hover {
+  background-color: #007bff;
+  color: #ffffff;
+  transform: translateY(-1px);
 }
 
 .header__title {
@@ -74,11 +80,16 @@
 }
 
 .header__book-app {
-  padding: 10px 20px;
-  background-color: #007bff;
-  color: #ffffff;
-  border: none;
+  padding: 12px 28px;
+  background-color: #2a7fff;
+  color: #fff;
+  text-decoration: none;
   border-radius: 20px;
-  font-size: 16px;
+  border: none;
+  font-weight: 600;
   cursor: pointer;
+}
+.header__book-app:hover {
+  background-color: #1f63cc;
+  transform: translateY(-1px);
 }

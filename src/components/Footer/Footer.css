@@ -1,11 +1,14 @@
 .footer {
   background-color: #0b1c2d;
   color: #ffffff;
-  height: 208px; /* 🔹 Fixed height as requested */
+  height: 208px; /* Fixed height as requested */
   padding: 20px; /* padding inside footer */
   display: flex;
   flex-direction: column;
   justify-content: space-between; /* pushes bottom bar to bottom */
+  font-family: Roboto, sans-serif;
+  font-weight: 500;
+  font-size: 16px;
 }
 
 .footer__content {

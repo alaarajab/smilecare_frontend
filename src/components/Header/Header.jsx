@@ -9,7 +9,7 @@ function Header({ onLoginClick }) {
   const [navigatorStyle, setNavigatorStyle] = useState({});
 
   const pageMap = {
-    "/": "Home",
+    "/": "Welcome to our Clinic",
     "/about": "About",
     "/services": "Services",
     "/dental-education": "Dental Education",

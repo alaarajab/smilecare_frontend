@@ -29,15 +29,6 @@ function NutritionSearch() {
     }
   };
 
-  /*const evaluateDentalHealth = (food) => {
-    if (!food) return "";
-    const sugar = food.sugar_g || 0;
-    const calcium = food.calcium_mg || 0;
-
-    if (sugar < 5 && calcium > 50) return "Good for dental health 🦷";
-    if (sugar > 10) return "High sugar, not ideal for teeth ⚠️";
-    return "Moderate, be careful 🥄";
-  };*/
   const evaluateDentalHealth = (food) => {
     if (!food) return "";
     const sugar = food.sugar_g || 0;

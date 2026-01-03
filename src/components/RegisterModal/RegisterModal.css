@@ -66,20 +66,21 @@
 
 /* Button */
 .modal-content button[type="submit"] {
-  margin-top: 8px;
-  padding: 12px;
-  font-size: 15px;
-  font-weight: 600;
-  color: #ffffff;
-  background: #2563eb;
+  padding: 12px 28px;
+  background-color: #2a7fff;
+  color: #fff;
+  text-decoration: none;
+  border-radius: 20px;
   border: none;
-  border-radius: 8px;
+  font-weight: 600;
   cursor: pointer;
-  transition: background 0.2s, transform 0.1s;
+  display: inline-block;
+  transition: background-color 0.2s ease, transform 0.15s ease;
 }
 
 .modal-content button[type="submit"]:hover {
-  background: #1d4ed8;
+  background-color: #1f63cc;
+  transform: translateY(-1px);
 }
 
 .modal-content button[type="submit"]:active {

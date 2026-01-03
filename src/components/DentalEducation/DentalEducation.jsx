@@ -16,7 +16,6 @@ function DentalEducation() {
           to find tips to improve your dental health.
         </p>
 
-        {/* Dropdown menu */}
         <section className="education__dropdown">
           <label htmlFor="symptoms">Select symptom: </label>
           <select
@@ -35,7 +34,6 @@ function DentalEducation() {
           </select>
         </section>
 
-        {/* Render selected education card */}
         {selectedSymptom && dentalTips[selectedSymptom] && (
           <EducationCard
             title={selectedSymptom}
@@ -44,7 +42,6 @@ function DentalEducation() {
           />
         )}
 
-        {/* Nutrition search */}
         <NutritionSearch />
       </div>
     </main>
