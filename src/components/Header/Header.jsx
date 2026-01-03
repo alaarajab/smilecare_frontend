@@ -3,7 +3,7 @@ import logo from "../../assets/logo.svg";
 import { NavLink, useLocation } from "react-router-dom";
 import { useEffect, useRef, useState } from "react";
 
-function Header() {
+function Header({ onLoginClick }) {
   const location = useLocation();
   const menuRef = useRef(null);
   const [navigatorStyle, setNavigatorStyle] = useState({});
@@ -12,9 +12,9 @@ function Header() {
     "/": "Home",
     "/about": "About",
     "/services": "Services",
+    "/dental-education": "Dental Education",
     "/contact": "Contact",
   };
-
   const pageTitle = pageMap[location.pathname] || "Home";
 
   useEffect(() => {
@@ -72,6 +72,14 @@ function Header() {
           >
             Services
           </NavLink>
+          <NavLink
+            to="/dental-education"
+            className={({ isActive }) =>
+              `header__menu-item ${isActive ? "active" : ""}`
+            }
+          >
+            Dental Education
+          </NavLink>
 
           <NavLink
             to="/contact"
@@ -86,7 +94,9 @@ function Header() {
           <span className="header__navigator" style={navigatorStyle} />
         </nav>
 
-        <button className="header__signIn">Sign In</button>
+        <button className="header__signIn" onClick={onLoginClick}>
+          Sign In
+        </button>
       </div>
 
       <div className="header__divider" />
