@@ -59,19 +59,21 @@ function Services() {
 
   return (
     <section className="services">
-      <h1 className="services__title">Our Dental Services</h1>
-
-      {services.map((service, index) => (
-        <div
-          className={`service ${index % 2 === 1 ? "service--reverse" : ""}`}
-          key={service.title}
-        >
+      {services.map((service) => (
+        <div className="service" key={service.title}>
+          {/* Service Image */}
           <img src={service.image} alt={service.title} />
 
+          {/* Content + Video wrapper */}
           <div className="service__content-wrapper">
             <div className="service__content">
+              {/* Title */}
               <h2>{service.title}</h2>
+
+              {/* Description */}
               <p>{service.description}</p>
+
+              {/* Cases list */}
               <ul>
                 {service.cases.map((c) => (
                   <li key={c}>{c}</li>
@@ -79,6 +81,7 @@ function Services() {
               </ul>
             </div>
 
+            {/* Video below description */}
             <div className="service__video">
               <iframe
                 src={service.video}
@@ -87,6 +90,7 @@ function Services() {
               />
             </div>
           </div>
+          <span className="service__divider" />
         </div>
       ))}
     </section>

@@ -17,7 +17,7 @@ function Footer() {
         <nav className="footer__links">
           <h3>Quick Links</h3>
           <NavLink to="/">Home</NavLink>
-          <NavLink to="/about">About</NavLink>
+          <NavLink to="/staff">Our Staff</NavLink>
           <NavLink to="/services">Services</NavLink>
           <NavLink to="/dental-education">Dental Education</NavLink>
           <NavLink to="/contact">Contact</NavLink>

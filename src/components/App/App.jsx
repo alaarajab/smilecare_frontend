@@ -10,6 +10,7 @@ import DentalEducation from "../DentalEducation/DentalEducation";
 import Contact from "../Contact/Contact";
 import Home from "../Home/Home";
 import Services from "../Services/Services";
+import Staff from "../Staff/Staff";
 
 function App() {
   const [loginOpen, setLoginOpen] = useState(false);
@@ -25,6 +26,7 @@ function App() {
           <Route path="/dental-education" element={<DentalEducation />} />
           <Route path="/contact" element={<Contact />} />
           <Route path="/services" element={<Services />} />
+          <Route path="/staff" element={<Staff />} />
         </Routes>
 
         {/* Global modals */}

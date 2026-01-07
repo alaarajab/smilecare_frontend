@@ -25,7 +25,6 @@ function ContactForm() {
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    // You can integrate API here
     const formData = {
       fullName,
       email,
@@ -48,34 +47,40 @@ function ContactForm() {
   };
 
   return (
-    <div className="contact-form-container">
-      <h2>
+    <div className="contact">
+      <h2 className="contact__title">
         Fill out the form below to get in touch or reserve your appointment
       </h2>
-      <form className="contact-form" onSubmit={handleSubmit}>
+
+      <form className="contact__form" onSubmit={handleSubmit}>
         <input
           type="text"
           placeholder="Full Name"
+          className="contact__input"
           value={fullName}
           onChange={(e) => setFullName(e.target.value)}
           required
         />
+
         <input
           type="email"
           placeholder="Email Address"
+          className="contact__input"
           value={email}
           onChange={(e) => setEmail(e.target.value)}
           required
         />
+
         <input
           type="tel"
           placeholder="Phone Number"
+          className="contact__input"
           value={phone}
           onChange={(e) => setPhone(e.target.value)}
           required
         />
 
-        <label className="book-appointment-checkbox">
+        <label className="contact__checkbox">
           <input
             type="checkbox"
             checked={bookAppointment}
@@ -85,11 +90,12 @@ function ContactForm() {
         </label>
 
         {bookAppointment && (
-          <div className="appointment-details">
+          <div className="contact__details">
             <label>
               Preferred Date:
               <input
                 type="date"
+                className="contact__input"
                 value={preferredDate}
                 onChange={(e) => setPreferredDate(e.target.value)}
                 required={bookAppointment}
@@ -99,6 +105,7 @@ function ContactForm() {
             <label>
               Preferred Time:
               <select
+                className="contact__input"
                 value={preferredTime}
                 onChange={(e) => setPreferredTime(e.target.value)}
                 required={bookAppointment}
@@ -114,11 +121,29 @@ function ContactForm() {
           </div>
         )}
 
-        <button type="submit">{bookAppointment ? "Book" : "Send"}</button>
+        <button
+          type="submit"
+          className={`contact__button ${
+            (bookAppointment && (!preferredDate || !preferredTime)) ||
+            !fullName ||
+            !email ||
+            !phone
+              ? "contact__button--disabled"
+              : ""
+          }`}
+          disabled={
+            (bookAppointment && (!preferredDate || !preferredTime)) ||
+            !fullName ||
+            !email ||
+            !phone
+          }
+        >
+          {bookAppointment ? "Book" : "Send"}
+        </button>
       </form>
 
       {submitted && (
-        <p className="confirmation-text">
+        <p className="contact__confirmation-text">
           We will contact you to confirm your appointment. All information is
           private.
         </p>

@@ -1,17 +1,18 @@
 import "./Header.css";
 import logo from "../../assets/logo.svg";
-import { NavLink, useLocation } from "react-router-dom";
+import { NavLink, useLocation, useNavigate } from "react-router-dom";
 import { useEffect, useRef, useState } from "react";
 
 function Header({ onLoginClick }) {
   const location = useLocation();
+  const navigate = useNavigate();
   const menuRef = useRef(null);
   const [navigatorStyle, setNavigatorStyle] = useState({});
 
   const pageMap = {
     "/": "Welcome to our Clinic",
-    "/about": "About",
-    "/services": "Services",
+    "/staff": "Our Staff",
+    "/services": "Our Dental Services",
     "/dental-education": "Dental Education",
     "/contact": "Contact",
   };
@@ -33,6 +34,10 @@ function Header({ onLoginClick }) {
       });
     }
   }, [location.pathname]);
+  const onBookAppointmentClick = () => {
+    // navigate to contact page
+    navigate("/contact");
+  };
 
   return (
     <header className="header">
@@ -56,12 +61,12 @@ function Header({ onLoginClick }) {
           </NavLink>
 
           <NavLink
-            to="/about"
+            to="/staff"
             className={({ isActive }) =>
               `header__menu-item ${isActive ? "active" : ""}`
             }
           >
-            About
+            Our Staff
           </NavLink>
 
           <NavLink
@@ -103,7 +108,9 @@ function Header({ onLoginClick }) {
 
       <div className="header__title">
         <h1 className="header__clinic-name">SmileCare Dental Clinic</h1>
-        <button className="header__book-app">Book Appointment</button>
+        <button className="header__book-app" onClick={onBookAppointmentClick}>
+          Book Appointment
+        </button>
 
         {/* dynamic page title */}
         <h2 className="header__page-title">{pageTitle}</h2>

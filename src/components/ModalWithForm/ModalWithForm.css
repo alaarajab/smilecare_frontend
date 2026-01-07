@@ -1,0 +1,204 @@
+/* ===== Overlay ===== */
+.modal__overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.55);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+  animation: modal-fade-in 0.3s ease;
+}
+
+/* ===== Modal Box ===== */
+.modal__content {
+  position: relative;
+  width: 100%;
+  max-width: 420px;
+  background: #ffffff;
+  border-radius: 12px;
+  padding: 28px 24px 24px;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
+  animation: modal-slide-up 0.3s ease;
+}
+
+/* ===== Title ===== */
+.modal__title {
+  margin-bottom: 20px;
+  text-align: center;
+  font-size: 24px;
+  font-weight: 600;
+  color: #1f2937;
+}
+
+/* ===== Close Button ===== */
+.modal__close {
+  position: absolute;
+  top: 10px;
+  right: 12px;
+  width: 40px;
+  height: 40px;
+  padding: 8px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #6b7280;
+}
+
+.modal__close:hover {
+  color: #111827;
+}
+
+.modal__close:focus-visible {
+  outline: 2px solid #2563eb;
+  outline-offset: 2px;
+  border-radius: 4px;
+}
+
+/* Close Icon inside button */
+.modal__close-icoForm {
+  width: 24px;
+  height: 24px;
+  object-fit: contain;
+  display: block;
+}
+
+@media (max-width: 480px) {
+  .modal__close-icoForm {
+    width: 20px;
+    height: 20px;
+  }
+}
+
+/* ===== Error Message ===== */
+.modal__error {
+  background: #fee2e2;
+  color: #b91c1c;
+  padding: 10px 12px;
+  border-radius: 6px;
+  font-size: 14px;
+  margin-bottom: 12px;
+}
+
+/* ===== Form ===== */
+.modal__form {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+/* ===== Inputs ===== */
+.modal__input {
+  width: 100%;
+  padding: 12px 14px;
+  font-size: 14px;
+  border: 1px solid #d1d5db;
+  border-radius: 8px;
+  outline: none;
+  transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+.modal__input:focus {
+  border-color: #2563eb;
+  box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.2);
+}
+
+/* ===== Submit Button ===== */
+.modal__submit {
+  margin-top: 8px;
+  padding: 12px;
+  background-color: #2a7fff;
+  color: #fff;
+  border-radius: 20px;
+  border: none;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 0.2s ease, transform 0.15s ease;
+}
+
+.modal__submit:hover {
+  background-color: #1f63cc;
+  transform: translateY(-1px);
+}
+
+.modal__submit:active {
+  transform: scale(0.98);
+}
+
+.modal__submit:disabled {
+  background: #9ca3af;
+  cursor: not-allowed;
+}
+
+/* ===== Footer ===== */
+.modal__footer {
+  margin-top: 16px;
+  font-size: 14px;
+  text-align: center;
+  color: #4b5563;
+}
+
+/* ===== Switch Button ===== */
+.modal__switch-button {
+  background: none;
+  border: none;
+  color: #6b7280;
+  opacity: 0.8;
+  cursor: pointer;
+  font-family: inherit;
+  font-weight: 600;
+  font-size: 14px;
+  line-height: 20px;
+  padding: 0;
+}
+
+.modal__switch-button:hover {
+  opacity: 1;
+  color: #2563eb;
+}
+
+.modal__switch-button:focus-visible {
+  outline: 2px solid #2563eb;
+  outline-offset: 2px;
+  border-radius: 4px;
+}
+
+/* ===== Animations ===== */
+@keyframes modal-fade-in {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes modal-slide-up {
+  from {
+    transform: translateY(20px);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+/* ===== Mobile ===== */
+@media (max-width: 480px) {
+  .modal__content {
+    margin: 0 16px;
+    padding: 24px 20px;
+  }
+
+  .modal__submit {
+    padding: 10px;
+  }
+
+  .modal__title {
+    font-size: 20px;
+  }
+}

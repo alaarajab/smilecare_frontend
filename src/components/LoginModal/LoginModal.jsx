@@ -1,39 +1,72 @@
-import React from "react";
-import "./LoginModal.css";
+import ModalWithForm from "../ModalWithForm/ModalWithForm";
+import { useForm } from "../../hooks/useForm"; // ✅ ADDED
+import "./LoginModal.css"; // Optional
 
 function LoginModal({ isOpen, onClose, onRegisterClick }) {
-  if (!isOpen) return null; // don't render if modal is closed
+  // ✅ ADDED: useForm hook
+  const { values, handleChange, isValid, resetForm } = useForm({
+    email: "",
+    password: "",
+  });
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    // Here you can call your API to log in
+
+    // ✅ values now come from useForm
+    console.log(values);
+
     alert("Logged in with email!");
+    resetForm(); // ✅ reset form after submit
     onClose();
   };
 
   return (
-    <div className="modal-overlay" onClick={onClose}>
-      <div
-        className="modal-content"
-        onClick={(e) => e.stopPropagation()} // prevent closing when clicking inside modal
-      >
-        <button className="modal-close" onClick={onClose}>
-          &times;
-        </button>
-        <h2>Sign In</h2>
-        <form onSubmit={handleSubmit} className="modal-form">
-          <input type="email" placeholder="Email" required />
-          <input type="password" placeholder="Password" required />
-          <button type="submit">Sign In</button>
-        </form>
-        <p className="modal-footer">
-          You don’t have an account?{" "}
-          <span className="modal-link" onClick={onRegisterClick}>
+    <ModalWithForm
+      isOpen={isOpen}
+      onClose={() => {
+        resetForm(); // ✅ reset when modal closes
+        onClose();
+      }}
+      title="Sign In"
+      submitText="Sign In"
+      onSubmit={handleSubmit}
+      loading={!isValid} // ✅ disables submit button
+      footer={
+        <>
+          Don’t have an account?{" "}
+          <button
+            type="button"
+            className="modal__switch-button"
+            onClick={onRegisterClick}
+          >
             Sign Up
-          </span>
-        </p>
-      </div>
-    </div>
+          </button>
+        </>
+      }
+    >
+      {/* ✅ CHANGED: controlled input */}
+      <input
+        className="modal__input"
+        type="email"
+        name="email" // ✅ REQUIRED for useForm
+        placeholder="Email"
+        value={values.email} // ✅ controlled
+        onChange={handleChange} // ✅ useForm handler
+        required
+      />
+
+      {/* ✅ CHANGED: controlled input */}
+      <input
+        className="modal__input"
+        type="password"
+        name="password" // ✅ REQUIRED
+        placeholder="Password"
+        value={values.password} // ✅ controlled
+        onChange={handleChange} // ✅ useForm handler
+        required
+        minLength="6"
+      />
+    </ModalWithForm>
   );
 }
 
