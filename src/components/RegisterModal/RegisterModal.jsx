@@ -1,50 +1,43 @@
-import { useState } from "react";
+import { useForm } from "../../hooks/useForm";
 import ModalWithForm from "../ModalWithForm/ModalWithForm";
-import "./RegisterModal.css"; // Optional, you can keep extra styles
 
 function RegisterModal({ isOpen, onClose, onLoginClick }) {
-  const [fullName, setFullName] = useState("");
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  const [confirmPassword, setConfirmPassword] = useState("");
-  const [loading, setLoading] = useState(false);
-  const [error, setError] = useState("");
-
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    setError("");
-
-    if (password.length < 6) {
-      setError("Password must be at least 6 characters.");
-      return;
+  const { values, handleChange, resetForm, errors, isValid } = useForm(
+    {
+      name: "",
+      email: "",
+      password: "",
+      confirmPassword: "",
+    },
+    {
+      name: (value) => (!value.trim() ? "Name is required" : ""),
+      email: (value) =>
+        !/^\S+@\S+\.\S+$/.test(value) ? "Invalid email address" : "",
+      password: (value) =>
+        value.length < 6 ? "Password must be at least 6 characters" : "",
+      confirmPassword: (value, values) =>
+        value !== values.password ? "Passwords do not match" : "",
     }
+  );
+  const handleClose = () => {
+    resetForm();
+    onClose();
+  };
+  const handleSubmit = () => {
+    console.log("Register data:", values);
 
-    if (password !== confirmPassword) {
-      setError("Passwords do not match.");
-      return;
-    }
-
-    setLoading(true);
-
-    try {
-      // Simulate API call
-      await new Promise((res) => setTimeout(res, 1000));
-      onClose();
-    } catch {
-      setError("Registration failed.");
-    } finally {
-      setLoading(false);
-    }
+    resetForm();
+    onClose();
   };
 
   return (
     <ModalWithForm
       isOpen={isOpen}
-      onClose={onClose}
+      onClose={handleClose}
       title="Sign Up"
-      submitText={loading ? "Creating..." : "Create Account"}
+      submitText="Create Account"
       onSubmit={handleSubmit}
-      loading={loading}
+      isValid={isValid}
       footer={
         <>
           Already have an account?{" "}
@@ -58,43 +51,70 @@ function RegisterModal({ isOpen, onClose, onLoginClick }) {
         </>
       }
     >
-      {error && <p className="modal__error">{error}</p>}
+      {/* Name */}
+      <label htmlFor="register-name" className="modal__label">
+        Name
+        <input
+          type="text"
+          name="name"
+          className="modal__input"
+          id="register-name"
+          placeholder="Your name"
+          value={values.name}
+          onChange={handleChange}
+          required
+        />
+        {errors.name && <span className="modal__error">{errors.name}</span>}
+      </label>
 
-      <input
-        className="modal__input"
-        type="text"
-        placeholder="Full Name"
-        value={fullName}
-        onChange={(e) => setFullName(e.target.value)}
-        required
-      />
+      <label htmlFor="register-email" className="modal__label">
+        Email
+        <input
+          type="email"
+          name="email"
+          className="modal__input"
+          id="register-email"
+          placeholder="Email"
+          value={values.email}
+          onChange={handleChange}
+          required
+        />
+        {errors.email && <span className="modal__error">{errors.email}</span>}
+      </label>
 
-      <input
-        className="modal__input"
-        type="email"
-        placeholder="Email Address"
-        value={email}
-        onChange={(e) => setEmail(e.target.value)}
-        required
-      />
-
-      <input
-        className="modal__input"
-        type="password"
-        placeholder="Password"
-        value={password}
-        onChange={(e) => setPassword(e.target.value)}
-        required
-      />
-
-      <input
-        className="modal__input"
-        type="password"
-        placeholder="Confirm Password"
-        value={confirmPassword}
-        onChange={(e) => setConfirmPassword(e.target.value)}
-        required
-      />
+      {/* Password */}
+      <label htmlFor="register-password" className="modal__label">
+        Password
+        <input
+          type="password"
+          name="password"
+          className="modal__input"
+          id="register-password"
+          placeholder="Password"
+          value={values.password}
+          onChange={handleChange}
+          required
+        />
+        {errors.password && (
+          <span className="modal__error">{errors.password}</span>
+        )}
+      </label>
+      <label htmlFor="register-confirm-password" className="modal__label">
+        Password Confirmation
+        <input
+          className="modal__input"
+          type="password"
+          name="confirmPassword"
+          id="register-confirm-password"
+          placeholder="Confirm Password"
+          value={values.confirmPassword}
+          onChange={handleChange}
+          required
+        />
+        {errors.confirmPassword && (
+          <span className="modal__error">{errors.confirmPassword}</span>
+        )}
+      </label>
     </ModalWithForm>
   );
 }

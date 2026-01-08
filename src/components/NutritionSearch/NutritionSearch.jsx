@@ -54,7 +54,9 @@ function NutritionSearch() {
           onChange={(e) => setQuery(e.target.value)}
           placeholder="Enter food name..."
         />
-        <button onClick={handleSearch}>Search</button>
+        <button onClick={handleSearch} disabled={query.trim() === ""}>
+          Search
+        </button>
       </div>
 
       {loading && <p>Loading...</p>}

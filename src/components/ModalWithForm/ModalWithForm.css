@@ -65,6 +65,43 @@
   object-fit: contain;
   display: block;
 }
+.modal__label {
+  display: flex;
+  flex-direction: column;
+  width: 100%; /* ensure label doesn’t exceed form width */
+  font-size: 14px;
+  color: #374151;
+  box-sizing: border-box; /* ✅ include padding/border in width */
+}
+
+/* ===== Inputs ===== */
+.modal__input {
+  width: 100%;
+  padding: 12px 14px;
+  font-size: 14px;
+  border: 1px solid #d1d5db;
+  border-radius: 8px;
+  outline: none;
+  transition: border-color 0.2s, box-shadow 0.2s;
+  box-sizing: border-box; /* ✅ important */
+}
+.modal__input:focus {
+  border-color: #2563eb;
+  box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.2);
+}
+
+/* ===== Error Message ===== */
+.modal__error {
+  display: block;
+  max-width: 100%; /* ✅ prevent overflow */
+  box-sizing: border-box; /* ✅ include padding in width */
+  background: #fee2e2;
+  color: #b91c1c;
+  padding: 6px 10px;
+  border-radius: 6px;
+  font-size: 12px;
+  margin-top: 6px; /* space from input */
+}
 
 @media (max-width: 480px) {
   .modal__close-icoForm {

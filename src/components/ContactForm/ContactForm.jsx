@@ -1,13 +1,8 @@
-import { useState } from "react";
+import React, { useState } from "react";
+import { useForm } from "../../hooks/useForm"; // ✅ reusable hook
 import "./ContactForm.css";
 
 function ContactForm() {
-  const [fullName, setFullName] = useState("");
-  const [email, setEmail] = useState("");
-  const [phone, setPhone] = useState("");
-  const [bookAppointment, setBookAppointment] = useState(false);
-  const [preferredDate, setPreferredDate] = useState("");
-  const [preferredTime, setPreferredTime] = useState("");
   const [submitted, setSubmitted] = useState(false);
 
   const timeSlots = [
@@ -22,27 +17,33 @@ function ContactForm() {
     "05:00 PM",
   ];
 
+  // ✅ useForm to manage all fields & validation
+  const { values, errors, handleChange, resetForm, isValid } = useForm(
+    {
+      fullName: "",
+      email: "",
+      phone: "",
+      bookAppointment: false,
+      preferredDate: "",
+      preferredTime: "",
+    },
+    {
+      fullName: (v) => (!v.trim() ? "Full Name is required" : ""),
+      email: (v) => (!/^\S+@\S+\.\S+$/.test(v) ? "Invalid email address" : ""),
+      phone: (v) => (!/^\+?\d{7,15}$/.test(v) ? "Invalid phone number" : ""),
+      preferredDate: (v, all) =>
+        all.bookAppointment && !v ? "Select a date" : "",
+      preferredTime: (v, all) =>
+        all.bookAppointment && !v ? "Select a time" : "",
+    }
+  );
+
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    const formData = {
-      fullName,
-      email,
-      phone,
-      bookAppointment,
-      preferredDate,
-      preferredTime,
-    };
+    console.log("Form submitted:", values);
 
-    console.log("Form submitted:", formData);
-
-    // Reset form
-    setFullName("");
-    setEmail("");
-    setPhone("");
-    setBookAppointment(false);
-    setPreferredDate("");
-    setPreferredTime("");
+    resetForm();
     setSubmitted(true);
   };
 
@@ -52,63 +53,92 @@ function ContactForm() {
         Fill out the form below to get in touch or reserve your appointment
       </h2>
 
-      <form className="contact__form" onSubmit={handleSubmit}>
-        <input
-          type="text"
-          placeholder="Full Name"
-          className="contact__input"
-          value={fullName}
-          onChange={(e) => setFullName(e.target.value)}
-          required
-        />
+      <form className="modal__form" onSubmit={handleSubmit} noValidate>
+        {/* Full Name */}
+        <label className="modal__label">
+          Full Name
+          <input
+            type="text"
+            name="fullName"
+            className="modal__input"
+            placeholder="Full Name"
+            value={values.fullName}
+            onChange={handleChange}
+            required
+          />
+          {errors.fullName && (
+            <span className="modal__error">{errors.fullName}</span>
+          )}
+        </label>
 
-        <input
-          type="email"
-          placeholder="Email Address"
-          className="contact__input"
-          value={email}
-          onChange={(e) => setEmail(e.target.value)}
-          required
-        />
+        {/* Email */}
+        <label className="modal__label">
+          Email Address
+          <input
+            type="email"
+            name="email"
+            className="modal__input"
+            placeholder="you@example.com"
+            value={values.email}
+            onChange={handleChange}
+            required
+          />
+          {errors.email && <span className="modal__error">{errors.email}</span>}
+        </label>
 
-        <input
-          type="tel"
-          placeholder="Phone Number"
-          className="contact__input"
-          value={phone}
-          onChange={(e) => setPhone(e.target.value)}
-          required
-        />
+        {/* Phone */}
+        <label className="modal__label">
+          Phone Number
+          <input
+            type="tel"
+            name="phone"
+            className="modal__input"
+            placeholder="Phone Number"
+            value={values.phone}
+            onChange={handleChange}
+            required
+          />
+          {errors.phone && <span className="modal__error">{errors.phone}</span>}
+        </label>
 
+        {/* Book Appointment */}
         <label className="contact__checkbox">
           <input
             type="checkbox"
-            checked={bookAppointment}
-            onChange={(e) => setBookAppointment(e.target.checked)}
+            name="bookAppointment"
+            checked={values.bookAppointment}
+            onChange={handleChange}
           />
           Book Appointment
         </label>
 
-        {bookAppointment && (
+        {values.bookAppointment && (
           <div className="contact__details">
-            <label>
-              Preferred Date:
+            {/* Preferred Date */}
+            <label className="modal__label">
+              Preferred Date
               <input
                 type="date"
-                className="contact__input"
-                value={preferredDate}
-                onChange={(e) => setPreferredDate(e.target.value)}
-                required={bookAppointment}
+                name="preferredDate"
+                className="modal__input"
+                value={values.preferredDate}
+                onChange={handleChange}
+                required={values.bookAppointment}
               />
+              {errors.preferredDate && (
+                <span className="modal__error">{errors.preferredDate}</span>
+              )}
             </label>
 
-            <label>
-              Preferred Time:
+            {/* Preferred Time */}
+            <label className="modal__label">
+              Preferred Time
               <select
-                className="contact__input"
-                value={preferredTime}
-                onChange={(e) => setPreferredTime(e.target.value)}
-                required={bookAppointment}
+                name="preferredTime"
+                className="modal__input"
+                value={values.preferredTime}
+                onChange={handleChange}
+                required={values.bookAppointment}
               >
                 <option value="">Select Time</option>
                 {timeSlots.map((slot) => (
@@ -117,28 +147,16 @@ function ContactForm() {
                   </option>
                 ))}
               </select>
+              {errors.preferredTime && (
+                <span className="modal__error">{errors.preferredTime}</span>
+              )}
             </label>
           </div>
         )}
 
-        <button
-          type="submit"
-          className={`contact__button ${
-            (bookAppointment && (!preferredDate || !preferredTime)) ||
-            !fullName ||
-            !email ||
-            !phone
-              ? "contact__button--disabled"
-              : ""
-          }`}
-          disabled={
-            (bookAppointment && (!preferredDate || !preferredTime)) ||
-            !fullName ||
-            !email ||
-            !phone
-          }
-        >
-          {bookAppointment ? "Book" : "Send"}
+        {/* Submit Button */}
+        <button type="submit" className="modal__submit" disabled={!isValid}>
+          {values.bookAppointment ? "Book" : "Send"}
         </button>
       </form>
 

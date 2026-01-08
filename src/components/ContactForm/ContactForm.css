@@ -1,75 +1,27 @@
 .contact {
-  max-width: 600px;
-  margin: 2rem auto;
-  padding: 1rem;
-  background: #f9f9f9;
-  border-radius: 10px;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
-  font-family: Roboto, sans-serif;
-  font-weight: 500;
-  font-size: 16px;
+  max-width: 500px;
+  margin: 40px auto;
+  padding: 20px;
 }
-
-.contact__title {
-  text-align: center;
-  margin-bottom: 1.5rem;
-  font-size: 1.5rem;
-  color: #333;
-}
-
 .contact__form {
   display: flex;
   flex-direction: column;
-  gap: 1rem;
+  gap: 16px; /* space between each input */
 }
-
-.contact__input,
-.contact__details select {
-  padding: 0.75rem 1rem;
-  border-radius: 6px;
-  border: 1px solid #ccc;
-  font-size: 1rem;
+.contact__title {
+  text-align: center;
+  font-size: 22px;
+  margin-bottom: 24px;
+  color: #1f2937;
 }
-
-.contact__checkbox {
-  display: flex;
-  align-items: center;
-  gap: 0.5rem;
-  font-weight: bold;
-}
-
 .contact__details {
   display: flex;
   flex-direction: column;
-  gap: 0.75rem;
-  margin-top: 0.5rem;
+  gap: 12px;
 }
-
-.contact__button {
-  border: none;
-  border-radius: 20px;
-  padding: 12px 28px;
-  background-color: #2a7fff;
-  color: #fff;
-  font-weight: 600;
-  cursor: pointer;
-  transition: background 0.3s, transform 0.2s;
-}
-
-.contact__button:hover:not(:disabled) {
-  background-color: #1f63cc;
-  transform: translateY(-1px);
-}
-
-.contact__button--disabled {
-  background-color: #a0c4ff;
-  cursor: not-allowed;
-  transform: none;
-}
-
-.contact__confirmation-text {
-  margin-top: 1rem;
-  font-style: italic;
-  color: #555;
-  text-align: center;
+@media (max-width: 480px) {
+  .contact {
+    padding: 16px;
+    margin: 20px auto;
+  }
 }
