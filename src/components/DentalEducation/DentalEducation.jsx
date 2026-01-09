@@ -36,7 +36,7 @@ function DentalEducation() {
         </section>
 
         {selectedSymptom && dentalTips[selectedSymptom] && (
-          <ItemCard title={selectedSymptom}>
+          <ItemCard title={selectedSymptom} id={selectedSymptom}>
             <p>{dentalTips[selectedSymptom].tip}</p>
 
             <p>

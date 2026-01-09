@@ -11,6 +11,7 @@ import Contact from "../Contact/Contact";
 import Home from "../Home/Home";
 import Services from "../Services/Services";
 import Staff from "../Staff/Staff";
+import Profile from "../Profile/Profile";
 
 function App() {
   const [loginOpen, setLoginOpen] = useState(false);
@@ -27,6 +28,7 @@ function App() {
           <Route path="/contact" element={<Contact />} />
           <Route path="/services" element={<Services />} />
           <Route path="/staff" element={<Staff />} />
+          <Route path="/profile" element={<Profile />} />
         </Routes>
 
         {/* Global modals */}

@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import whiteBookmark from "../../assets/white_bluemarks.png"; // not saved
 import blueBookmark from "../../assets/blue_bookmarks.png"; // saved
+import { useUser } from "../../context/UserContext";
 import "./ItemCard.css";
 
 function ItemCard({ title, children, initiallySaved = false }) {

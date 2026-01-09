@@ -15,6 +15,7 @@ function Header({ onLoginClick }) {
     "/services": "Our Dental Services",
     "/dental-education": "Dental Education",
     "/contact": "Contact",
+    "/profile": "Your Profile",
   };
   const pageTitle = pageMap[location.pathname] || "Home";
 

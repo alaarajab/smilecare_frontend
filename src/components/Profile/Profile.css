@@ -1,0 +1,19 @@
+.profile-page {
+  padding: 20px;
+}
+
+.profile-title {
+  font-size: 24px;
+  margin-bottom: 16px;
+}
+
+.no-items {
+  font-style: italic;
+  color: gray;
+}
+
+.saved-cards {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px;
+}

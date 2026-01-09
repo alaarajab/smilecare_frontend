@@ -69,7 +69,7 @@ function NutritionSearch() {
       {error && <p style={{ color: "red" }}>{error}</p>}
 
       {result && (
-        <ItemCard title={result.name}>
+        <ItemCard id={result.name} title={result.name}>
           <p>Calories: {result.calories} kcal</p>
           <p>Protein: {result.protein_g || 0} g</p>
           <p>Fat: {result.fat_total_g || 0} g</p>
