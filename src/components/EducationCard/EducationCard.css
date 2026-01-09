@@ -6,16 +6,12 @@
   text-align: left;
 }
 
-.education__card-symptom {
+.education__card-title {
   font-size: 20px;
   margin-bottom: 10px;
 }
 
-.education__card-tip {
+.education__card-description {
   font-size: 16px;
   margin-bottom: 10px;
-}
-
-.education__card-nutrition li {
-  font-size: 14px;
 }

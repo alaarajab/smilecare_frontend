@@ -22,7 +22,7 @@
   border: 1px solid #ccc;
 }
 
-.nutrition__input button {
+.nutrition__input-button {
   padding: 8px 16px;
   font-size: 16px;
   background-color: #007bff;
@@ -31,12 +31,12 @@
   border-radius: 12px;
   cursor: pointer;
 }
-.nutrition__input button:hover {
+.nutrition__input-button:hover {
   background-color: #1f63cc;
   transform: translateY(-1px);
 }
 
-.nutrition__input button:disabled {
+.nutrition__input-button:disabled {
   background: #9ca3af;
   cursor: not-allowed;
   opacity: 0.6;
