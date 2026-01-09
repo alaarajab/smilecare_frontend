@@ -1,0 +1,42 @@
+.card {
+  width: 600px;
+  height: 300px;
+  background: #fff;
+  border-radius: 12px;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+  position: relative;
+  padding: 24px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 12px;
+}
+
+.card__bookmark {
+  position: absolute;
+  top: 16px;
+  right: 16px;
+  background: none;
+  border: none;
+  cursor: pointer;
+}
+
+.card__bookmark img {
+  width: 24px;
+  height: 24px;
+}
+
+.card__content {
+  text-align: left;
+}
+
+.card__title {
+  font-size: 24px;
+  font-weight: 600;
+  margin-bottom: 12px;
+}
+
+.card__description {
+  font-size: 16px;
+  line-height: 1.5;
+}

@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { fetchNutrition } from "../../utils/ninjaApi";
 import { DENTAL_HEALTH_THRESHOLDS } from "../../utils/constants";
-import "./NutritionSearch.css";
+import "./NutritionCard.css";
 
 function NutritionSearch() {
   const [query, setQuery] = useState("");
@@ -45,9 +45,9 @@ function NutritionSearch() {
   };
 
   return (
-    <div className="nutrition-search">
+    <div className="nutrition">
       <h2>Check a Food's Effect on Dental Health</h2>
-      <div className="nutrition-search__input">
+      <div className="nutrition__input">
         <input
           type="text"
           value={query}
@@ -63,7 +63,7 @@ function NutritionSearch() {
       {error && <p style={{ color: "red" }}>{error}</p>}
 
       {result && (
-        <div className="nutrition-search__result">
+        <div className="nutrition__card">
           <h3>{result.name}</h3>
           <p>Calories: {result.calories} kcal</p>
           <p>Protein: {result.protein_g || 0} g</p>

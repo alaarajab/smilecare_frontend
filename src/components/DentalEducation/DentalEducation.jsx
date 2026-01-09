@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import EducationCard from "../EducationCard/EducationCard";
-import NutritionSearch from "../NutritionSearch/NutritionSearch";
+import NutritionCard from "../NutritionCard/NutritionCard";
 import dentalTips from "../../utils/dentalTips";
 import "./DentalEducation.css";
 
@@ -42,7 +42,7 @@ function DentalEducation() {
           />
         )}
 
-        <NutritionSearch />
+        <NutritionCard />
       </div>
     </main>
   );

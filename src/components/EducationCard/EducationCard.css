@@ -1,0 +1,21 @@
+.education__card {
+  background-color: #ffffff;
+  padding: 20px;
+  border-radius: 12px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+  text-align: left;
+}
+
+.education__card-symptom {
+  font-size: 20px;
+  margin-bottom: 10px;
+}
+
+.education__card-tip {
+  font-size: 16px;
+  margin-bottom: 10px;
+}
+
+.education__card-nutrition li {
+  font-size: 14px;
+}

@@ -1,4 +1,4 @@
-.nutrition-search {
+.nutrition {
   margin: 40px auto;
   max-width: 600px;
   text-align: center;
@@ -7,14 +7,14 @@
   font-size: 16px;
 }
 
-.nutrition-search__input {
+.nutrition__input {
   display: flex;
   gap: 10px;
   justify-content: center;
   margin-bottom: 20px;
 }
 
-.nutrition-search__input input {
+.nutrition__input input {
   padding: 8px 12px;
   font-size: 16px;
   flex: 1;
@@ -22,7 +22,7 @@
   border: 1px solid #ccc;
 }
 
-.nutrition-search__input button {
+.nutrition__input button {
   padding: 8px 16px;
   font-size: 16px;
   background-color: #007bff;
@@ -31,20 +31,20 @@
   border-radius: 12px;
   cursor: pointer;
 }
-.nutrition-search__input button:hover {
+.nutrition__input button:hover {
   background-color: #1f63cc;
   transform: translateY(-1px);
 }
 
-.nutrition-search__result {
-  background-color: #fff;
+.nutrition__input button:disabled {
+  background: #9ca3af;
+  cursor: not-allowed;
+  opacity: 0.6;
+}
+.nutrition__card {
+  background-color: #ffffff;
   padding: 20px;
   border-radius: 12px;
   box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
   text-align: left;
-}
-.nutrition-search__input button:disabled {
-  background: #9ca3af;
-  cursor: not-allowed;
-  opacity: 0.6;
 }

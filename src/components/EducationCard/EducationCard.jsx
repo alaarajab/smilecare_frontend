@@ -3,7 +3,7 @@ import "./EducationCard.css";
 
 function EducationCard({ title, tip, nutrition }) {
   return (
-    <div className="education-card">
+    <div className="education__card">
       <h3>{title}</h3>
       <p>{tip}</p>
       <p>
