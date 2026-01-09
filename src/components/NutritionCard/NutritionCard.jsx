@@ -49,6 +49,7 @@ function NutritionSearch() {
   return (
     <div className="nutrition">
       <h2>Check a Food's Effect on Dental Health</h2>
+
       <div className="nutrition__input">
         <input
           type="text"
@@ -68,15 +69,20 @@ function NutritionSearch() {
       {loading && <p>Loading...</p>}
       {error && <p style={{ color: "red" }}>{error}</p>}
 
+      {/* ✅ FIXED ItemCard usage */}
       {result && (
-        <ItemCard id={result.name} title={result.name}>
-          <p>Calories: {result.calories} kcal</p>
-          <p>Protein: {result.protein_g || 0} g</p>
-          <p>Fat: {result.fat_total_g || 0} g</p>
-          <p>Sugar: {result.sugar_g || 0} g</p>
-          <p>Carbs: {result.carbohydrates_total_g || 0} g</p>
-          <p>{evaluateDentalHealth(result)}</p>
-        </ItemCard>
+        <ItemCard
+          id={result.name}
+          title={result.name}
+          description={`
+Calories: ${result.calories} kcal
+Protein: ${result.protein_g || 0} g
+Fat: ${result.fat_total_g || 0} g
+Sugar: ${result.sugar_g || 0} g
+Carbs: ${result.carbohydrates_total_g || 0} g
+${evaluateDentalHealth(result)}
+`}
+        />
       )}
     </div>
   );
