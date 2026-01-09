@@ -1,29 +1,39 @@
 import React, { useState } from "react";
-import closeIcon from "../../assets/closeIcon_white_bluemarks.png"; // not saved
-import blueBookmarkIcon from "../../assets/blue_bookmarks.png"; // saved
+import whiteBookmark from "../../assets/white_bluemarks.png"; // not saved
+import blueBookmark from "../../assets/blue_bookmarks.png"; // saved
 import "./ItemCard.css";
 
-function ItemCard({ title, description, initiallySaved = false }) {
+function ItemCard({ title, children, initiallySaved = false }) {
   const [saved, setSaved] = useState(initiallySaved);
 
-  const handleBookmark = () => {
+  const handleBookmarkClick = () => {
     setSaved((prev) => !prev);
   };
 
+  function capitalizeTitle(text) {
+    if (!text) return "";
+    return text
+      .split(" ")
+      .map((word) => word.charAt(0).toUpperCase() + word.slice(1).toLowerCase())
+      .join(" ");
+  }
+
   return (
     <div className="card">
-      {/* Bookmark button */}
-      <button className="card__bookmark" onClick={handleBookmark}>
+      <button
+        className="card__bookmark"
+        onClick={handleBookmarkClick}
+        aria-label="Save card"
+      >
         <img
-          src={saved ? blueBookmarkIcon : closeIcon}
-          alt={saved ? "Saved" : "Save"}
+          src={saved ? blueBookmark : whiteBookmark}
+          alt={saved ? "Saved" : "Not saved"}
         />
       </button>
 
-      {/* Content */}
       <div className="card__content">
-        <h3 className="card__title">{title}</h3>
-        <p className="card__description">{description}</p>
+        <h3 className="card__title">{capitalizeTitle(title)}</h3>
+        <div className="card__description">{children}</div>
       </div>
     </div>
   );

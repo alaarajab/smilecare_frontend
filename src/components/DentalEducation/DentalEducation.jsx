@@ -1,7 +1,8 @@
 import React, { useState } from "react";
-import EducationCard from "../EducationCard/EducationCard";
+
 import NutritionCard from "../NutritionCard/NutritionCard";
 import dentalTips from "../../utils/dentalTips";
+import ItemCard from "../ItemCard/ItemCard";
 import "./DentalEducation.css";
 
 function DentalEducation() {
@@ -35,11 +36,14 @@ function DentalEducation() {
         </section>
 
         {selectedSymptom && dentalTips[selectedSymptom] && (
-          <EducationCard
-            title={selectedSymptom}
-            tip={dentalTips[selectedSymptom].tip}
-            nutrition={dentalTips[selectedSymptom].nutrition}
-          />
+          <ItemCard title={selectedSymptom}>
+            <p>{dentalTips[selectedSymptom].tip}</p>
+
+            <p>
+              <strong>Recommended nutrition:</strong>{" "}
+              {dentalTips[selectedSymptom].nutrition?.join(", ") || "N/A"}
+            </p>
+          </ItemCard>
         )}
 
         <NutritionCard />

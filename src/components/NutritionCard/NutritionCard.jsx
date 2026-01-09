@@ -1,6 +1,8 @@
 import React, { useState } from "react";
+import ItemCard from "../ItemCard/ItemCard";
 import { fetchNutrition } from "../../utils/ninjaApi";
 import { DENTAL_HEALTH_THRESHOLDS } from "../../utils/constants";
+
 import "./NutritionCard.css";
 
 function NutritionSearch() {
@@ -67,17 +69,14 @@ function NutritionSearch() {
       {error && <p style={{ color: "red" }}>{error}</p>}
 
       {result && (
-        <div className="nutrition__card">
-          <h3 className="nutrition__card-title">{result.name}</h3>
-          <div className="nutrition__card-description">
-            <p>Calories: {result.calories} kcal</p>
-            <p>Protein: {result.protein_g || 0} g</p>
-            <p>Fat: {result.fat_total_g || 0} g</p>
-            <p>Sugar: {result.sugar_g || 0} g</p>
-            <p>Carbs: {result.carbohydrates_total_g || 0} g</p>
-            <p>{evaluateDentalHealth(result)}</p>
-          </div>
-        </div>
+        <ItemCard title={result.name}>
+          <p>Calories: {result.calories} kcal</p>
+          <p>Protein: {result.protein_g || 0} g</p>
+          <p>Fat: {result.fat_total_g || 0} g</p>
+          <p>Sugar: {result.sugar_g || 0} g</p>
+          <p>Carbs: {result.carbohydrates_total_g || 0} g</p>
+          <p>{evaluateDentalHealth(result)}</p>
+        </ItemCard>
       )}
     </div>
   );
