@@ -1,5 +1,6 @@
 import { useForm } from "../../hooks/useForm";
 import ModalWithForm from "../ModalWithForm/ModalWithForm";
+import { useUser } from "../../context/UserContext";
 
 function RegisterModal({ isOpen, onClose, onLoginClick }) {
   const { values, handleChange, resetForm, errors, isValid } = useForm(
@@ -23,13 +24,19 @@ function RegisterModal({ isOpen, onClose, onLoginClick }) {
     resetForm();
     onClose();
   };
+  const { login } = useUser();
+  /*
   const handleSubmit = () => {
     console.log("Register data:", values);
 
     resetForm();
     onClose();
+  }; */
+  const handleSubmit = () => {
+    const newUser = { name: values.name, email: values.email };
+    login(newUser); // ✅ sets user
+    onClose();
   };
-
   return (
     <ModalWithForm
       isOpen={isOpen}

@@ -11,21 +11,30 @@ function NutritionSearch() {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
 
+  // Clean query: letters and spaces only
+  const cleanQuery = (text) => text.replace(/[^a-zA-Z\s]/g, "").trim();
+
   const handleSearch = async () => {
-    if (!query) return;
+    const q = cleanQuery(query);
+    if (!q) {
+      setError("Please enter a valid food name.");
+      setResult(null);
+      return;
+    }
+
     setLoading(true);
     setError(null);
 
     try {
-      const data = await fetchNutrition(query);
-      if (data.length === 0) {
+      const data = await fetchNutrition(q);
+      if (!data || data.length === 0) {
         setResult(null);
         setError("No results found.");
       } else {
         setResult(data[0]);
       }
     } catch (err) {
-      setError(err.message);
+      setError("Failed to fetch nutrition info.");
     } finally {
       setLoading(false);
     }
@@ -69,7 +78,6 @@ function NutritionSearch() {
       {loading && <p>Loading...</p>}
       {error && <p style={{ color: "red" }}>{error}</p>}
 
-      {/* ✅ FIXED ItemCard usage */}
       {result && (
         <ItemCard
           id={result.name}
@@ -81,7 +89,7 @@ Fat: ${result.fat_total_g || 0} g
 Sugar: ${result.sugar_g || 0} g
 Carbs: ${result.carbohydrates_total_g || 0} g
 ${evaluateDentalHealth(result)}
-`}
+          `}
         />
       )}
     </div>

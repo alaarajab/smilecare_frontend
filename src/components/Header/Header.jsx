@@ -2,12 +2,14 @@ import "./Header.css";
 import logo from "../../assets/logo.svg";
 import { NavLink, useLocation, useNavigate } from "react-router-dom";
 import { useEffect, useRef, useState } from "react";
+import { useUser } from "../../context/UserContext";
 
 function Header({ onLoginClick }) {
   const location = useLocation();
   const navigate = useNavigate();
   const menuRef = useRef(null);
   const [navigatorStyle, setNavigatorStyle] = useState({});
+  const { user, logout } = useUser();
 
   const pageMap = {
     "/": "Welcome to our Clinic",
@@ -100,9 +102,20 @@ function Header({ onLoginClick }) {
           <span className="header__navigator" style={navigatorStyle} />
         </nav>
 
-        <button className="header__signIn" onClick={onLoginClick}>
-          Sign In
-        </button>
+        {/* ✅ Dynamic Sign In / Logout */}
+        {/* ✅ Dynamic Sign In / Logout */}
+        {user ? (
+          <div className="header__user">
+            <span>Hello, {user.name}</span>
+            <button className="header__logout" onClick={logout}>
+              Logout
+            </button>
+          </div>
+        ) : (
+          <button className="header__signIn" onClick={onLoginClick}>
+            Sign In
+          </button>
+        )}
       </div>
 
       <div className="header__divider" />
