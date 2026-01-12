@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import ItemCard from "../ItemCard/ItemCard";
 import { fetchNutrition } from "../../utils/ninjaApi";
 import { DENTAL_HEALTH_THRESHOLDS } from "../../utils/constants";
+import Preloader from "../Preloader/Preloader";
 
 import "./NutritionCard.css";
 
@@ -58,7 +59,6 @@ function NutritionSearch() {
   return (
     <div className="nutrition">
       <h2>Check a Food's Effect on Dental Health</h2>
-
       <div className="nutrition__input">
         <input
           type="text"
@@ -74,10 +74,12 @@ function NutritionSearch() {
           Search
         </button>
       </div>
-
-      {loading && <p>Loading...</p>}
+      {loading && (
+        <div className="nutrition__preloader">
+          <Preloader text="Searching for food..." />
+        </div>
+      )}
       {error && <p style={{ color: "red" }}>{error}</p>}
-
       {result && (
         <ItemCard
           id={result.name}
