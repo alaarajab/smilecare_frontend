@@ -1,5 +1,6 @@
 import "./Header.css";
 import logo from "../../assets/logo.svg";
+import logoutIcon from "../../assets/logoutIcon.svg";
 import { NavLink, useLocation, useNavigate } from "react-router-dom";
 import { useEffect, useRef, useState } from "react";
 import { useUser } from "../../context/UserContext";
@@ -20,6 +21,7 @@ function Header({ onLoginClick }) {
     "/profile": "Your Profile",
   };
   const pageTitle = pageMap[location.pathname] || "Home";
+  const isProfilePage = location.pathname === "/profile";
 
   useEffect(() => {
     // query ACTIVE NavLink
@@ -43,7 +45,7 @@ function Header({ onLoginClick }) {
   };
 
   return (
-    <header className="header">
+    <header className={`header ${isProfilePage ? "header--profile" : ""}`}>
       <div className="header__spacer">
         <img
           className="header__logo"
@@ -106,7 +108,12 @@ function Header({ onLoginClick }) {
         {/* ✅ Dynamic Sign In / Logout */}
         {user ? (
           <div className="header__user">
-            <span>Hello, {user.name}</span>
+            <button
+              className="header__greeting"
+              onClick={() => navigate("/profile")}
+            >
+              <span>Hello, {user.name}</span>
+            </button>
             <button className="header__logout" onClick={logout}>
               Logout
             </button>
@@ -120,15 +127,18 @@ function Header({ onLoginClick }) {
 
       <div className="header__divider" />
 
-      <div className="header__title">
-        <h1 className="header__clinic-name">SmileCare Dental Clinic</h1>
-        <button className="header__book-app" onClick={onBookAppointmentClick}>
-          Book Appointment
-        </button>
+      {!isProfilePage && (
+        <div className="header__title">
+          <h1 className="header__clinic-name">SmileCare Dental Clinic</h1>
 
-        {/* dynamic page title */}
-        <h2 className="header__page-title">{pageTitle}</h2>
-      </div>
+          <button className="header__book-app" onClick={onBookAppointmentClick}>
+            Book Appointment
+          </button>
+
+          {/* dynamic page title */}
+          <h2 className="header__page-title">{pageTitle}</h2>
+        </div>
+      )}
     </header>
   );
 }

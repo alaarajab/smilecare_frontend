@@ -3,7 +3,11 @@
   height: 416px;
   background-image: url(../../assets/home_welcome_dental.png);
 }
-
+.header--profile {
+  height: 80px;
+  background-image: none;
+  background-color: #0b1c2d40;
+}
 .header__spacer {
   display: flex;
   margin: 0;
@@ -31,7 +35,16 @@
   text-decoration: none;
   padding: 8px 0;
 }
-
+.header__greeting {
+  color: #000;
+  margin-left: 50px;
+  font-size: 16px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-family: Roboto, sans-serif;
+  font-weight: 700;
+}
 .header__navigator {
   position: absolute; /* REQUIRED */
   bottom: -6px;
@@ -52,7 +65,7 @@
   margin-right: 20px;
   margin-left: 20px;
   margin-top: 20px;
-  width: 176px;
+  width: 120px;
   height: 40px;
   font-size: 16px;
   font-family: Roboto, sans-serif;
@@ -93,17 +106,6 @@
   background-color: #1f63cc;
   transform: translateY(-1px);
 }
-.header__user {
-  display: flex;
-  align-items: center;
-  gap: 12px; /* space between greeting and logout button */
-  margin-right: 20px;
-  margin-left: 20px;
-  margin-top: 20px;
-  font-family: Roboto, sans-serif;
-  color: #ffffff;
-  font-weight: 500;
-}
 
 /* User greeting text */
 .header__user span {
@@ -112,22 +114,28 @@
 
 /* Logout button styling */
 .header__logout {
-  padding: 0 12px;
-  border: 1px solid #ff4d4f;
+  padding: 0 8px;
+  border: 1px solid #007bff;
   border-radius: 20px;
   background: none;
-  color: #ff4d4f;
+  color: #007bff;
   cursor: pointer;
-  width: 100px;
-  height: 36px;
-  font-size: 14px;
-  font-weight: 500;
-  transition: background-color 0.2s ease, color 0.2s ease, transform 0.2s ease;
+  margin-right: 20px;
+  margin-left: 20px;
+  margin-top: 20px;
+  width: 120px;
+  height: 40px;
+  font-size: 16px;
+  font-family: Roboto, sans-serif;
+  transition: background-color 0.2s ease, color 0.2s ease;
 }
-
-/* Hover effect for logout button */
 .header__logout:hover {
-  background-color: #ff4d4f;
+  background-color: #007bff;
   color: #ffffff;
   transform: translateY(-1px);
+}
+.header__logout-image {
+  width: 20px;
+  height: 20px;
+  margin-left: 20px;
 }

@@ -1,6 +1,7 @@
 import ModalWithForm from "../ModalWithForm/ModalWithForm";
 import { useForm } from "../../hooks/useForm"; // ✅ useForm
 import { useUser } from "../../context/UserContext";
+import { useNavigate } from "react-router-dom";
 
 function LoginModal({ isOpen, onClose, onRegisterClick }) {
   // ✅ useForm manages all input values and validation
@@ -23,6 +24,7 @@ function LoginModal({ isOpen, onClose, onRegisterClick }) {
     onClose(); // ✅ closes modal
   };
   const { login } = useUser();
+  const navigate = useNavigate();
 
   /*const handleSubmit = () => {
     console.log("Login values:", values); // ✅ values from useForm
@@ -34,6 +36,7 @@ function LoginModal({ isOpen, onClose, onRegisterClick }) {
     const loggedInUser = { name: "Alaa", email: values.email };
     login(loggedInUser); // ✅ sets user
     onClose(); // close modal
+    navigate("/profile");
   };
 
   return (
