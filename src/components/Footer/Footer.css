@@ -1,11 +1,11 @@
 .footer {
   background-color: #0b1c2d40;
   color: #ffffff;
-  height: 208px; /* Fixed height as requested */
-  padding: 20px; /* padding inside footer */
+  height: 208px;
+  padding: 20px;
   display: flex;
   flex-direction: column;
-  justify-content: space-between; /* pushes bottom bar to bottom */
+  justify-content: space-between;
   font-family: Roboto, sans-serif;
   font-weight: 500;
   font-size: 16px;
@@ -16,7 +16,7 @@
   justify-content: space-between;
   align-items: flex-start;
   gap: 20px;
-  flex: 1; /* make content stretch */
+  flex: 1;
   margin-left: 40px;
   margin-right: 40px;
 }

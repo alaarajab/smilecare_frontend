@@ -3,7 +3,7 @@ import { useState } from "react";
 export function useForm(initialValues = {}, validators = {}) {
   const [values, setValues] = useState(initialValues);
   const [errors, setErrors] = useState({});
-  const [touched, setTouched] = useState({}); // ✅ NEW
+  const [touched, setTouched] = useState({});
   const [isValid, setIsValid] = useState(false);
 
   function handleChange(e) {
@@ -38,7 +38,7 @@ export function useForm(initialValues = {}, validators = {}) {
     });
   }
 
-  // ✅ NEW: only mark field as touched on blur
+  // only mark field as touched on blur
   function handleBlur(e) {
     const { name } = e.target;
     setTouched((prev) => ({ ...prev, [name]: true }));

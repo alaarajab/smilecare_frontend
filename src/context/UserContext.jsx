@@ -3,13 +3,11 @@ import { createContext, useContext, useState, useEffect } from "react";
 const UserContext = createContext();
 
 export function UserProvider({ children }) {
-  // ✅ User state
   const [user, setUser] = useState(() => {
     const savedUser = localStorage.getItem("user");
     return savedUser ? JSON.parse(savedUser) : null;
   });
 
-  // ✅ Saved items
   const [savedItems, setSavedItems] = useState(() => {
     const saved = localStorage.getItem("savedItems");
     return saved ? JSON.parse(saved) : [];
@@ -21,7 +19,6 @@ export function UserProvider({ children }) {
       localStorage.setItem("user", JSON.stringify(user));
     } else {
       localStorage.removeItem("user");
-      setSavedItems([]); // optional: clear saved items on logout
     }
   }, [user]);
 
@@ -30,20 +27,17 @@ export function UserProvider({ children }) {
     localStorage.setItem("savedItems", JSON.stringify(savedItems));
   }, [savedItems]);
 
-  // ✅ Login function
   const login = (userData) => {
     setUser(userData);
   };
 
-  // ✅ Logout function
   const logout = () => {
     setUser(null);
   };
 
-  // ✅ Toggle bookmark
   const toggleSavedItem = (item) => {
     if (!user) {
-      alert("Please log in to save items"); // <-- prevent saving if not logged in
+      alert("Please log in to save items");
       return;
     }
 
@@ -58,12 +52,9 @@ export function UserProvider({ children }) {
     });
   };
 
-  // ✅ Remove saved item explicitly
   const removeSavedItem = (id) => {
     setSavedItems((prev) => prev.filter((item) => item.id !== id));
   };
-
-  // ✅ Check if a card is saved
   const isItemSaved = (id) => savedItems.some((i) => i.id === id);
 
   return (
@@ -82,8 +73,6 @@ export function UserProvider({ children }) {
     </UserContext.Provider>
   );
 }
-
-// Hook to use context
 export function useUser() {
   return useContext(UserContext);
 }

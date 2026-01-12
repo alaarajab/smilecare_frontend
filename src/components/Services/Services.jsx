@@ -61,19 +61,12 @@ function Services() {
     <section className="services">
       {services.map((service) => (
         <div className="service" key={service.title}>
-          {/* Service Image */}
           <img src={service.image} alt={service.title} />
-
-          {/* Content + Video wrapper */}
           <div className="service__content-wrapper">
             <div className="service__content">
-              {/* Title */}
               <h2>{service.title}</h2>
 
-              {/* Description */}
               <p>{service.description}</p>
-
-              {/* Cases list */}
               <ul>
                 {service.cases.map((c) => (
                   <li key={c}>{c}</li>
@@ -81,7 +74,6 @@ function Services() {
               </ul>
             </div>
 
-            {/* Video below description */}
             <div className="service__video">
               <iframe
                 src={service.video}

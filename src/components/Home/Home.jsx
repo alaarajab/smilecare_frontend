@@ -42,11 +42,11 @@ function Home() {
 
       <div className="home__cards">
         {services.map((service) => (
-          <div className="service-card" key={service.title}>
-            <div className="service-card__image">
+          <div className="home__cards-service" key={service.title}>
+            <div className="home__cards-service-image">
               <img src={service.image} alt={service.title} />
             </div>
-            <h3 className="service-card__title">{service.title}</h3>
+            <h3 className="home__cards-service-title">{service.title}</h3>
           </div>
         ))}
       </div>

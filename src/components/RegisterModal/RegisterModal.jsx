@@ -34,7 +34,7 @@ function RegisterModal({ isOpen, onClose, onLoginClick }) {
   }; */
   const handleSubmit = () => {
     const newUser = { name: values.name, email: values.email };
-    login(newUser); // ✅ sets user
+    login(newUser);
     onClose();
   };
   return (
@@ -58,7 +58,6 @@ function RegisterModal({ isOpen, onClose, onLoginClick }) {
         </>
       }
     >
-      {/* Name */}
       <label htmlFor="register-name" className="modal__label">
         Name
         <input

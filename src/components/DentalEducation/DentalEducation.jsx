@@ -53,15 +53,12 @@ function DentalEducation() {
         </section>
 
         {tipsData && (
-          
-            <ItemCard
-              id={tipsData.id}
-              title={tipsData.title}
-              description={tipsData.description}
-               nutrition={tipsData.nutrition}
-            />
-          
-         
+          <ItemCard
+            id={tipsData.id}
+            title={tipsData.title}
+            description={tipsData.description}
+            nutrition={tipsData.nutrition}
+          />
         )}
 
         <NutritionCard />

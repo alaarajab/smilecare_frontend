@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { useForm } from "../../hooks/useForm"; // ✅ reusable hook
+import { useForm } from "../../hooks/useForm";
 import "./ContactForm.css";
 
 function ContactForm() {
@@ -17,7 +17,7 @@ function ContactForm() {
     "05:00 PM",
   ];
 
-  // ✅ useForm to manage all fields & validation
+  // useForm to manage all fields & validation
   const { values, errors, handleChange, resetForm, isValid } = useForm(
     {
       fullName: "",
@@ -54,7 +54,6 @@ function ContactForm() {
       </h2>
 
       <form className="modal__form" onSubmit={handleSubmit} noValidate>
-        {/* Full Name */}
         <label className="modal__label">
           Full Name
           <input
@@ -70,8 +69,6 @@ function ContactForm() {
             <span className="modal__error">{errors.fullName}</span>
           )}
         </label>
-
-        {/* Email */}
         <label className="modal__label">
           Email Address
           <input
@@ -85,8 +82,6 @@ function ContactForm() {
           />
           {errors.email && <span className="modal__error">{errors.email}</span>}
         </label>
-
-        {/* Phone */}
         <label className="modal__label">
           Phone Number
           <input
@@ -100,8 +95,6 @@ function ContactForm() {
           />
           {errors.phone && <span className="modal__error">{errors.phone}</span>}
         </label>
-
-        {/* Book Appointment */}
         <label className="contact__checkbox">
           <input
             type="checkbox"
@@ -114,7 +107,6 @@ function ContactForm() {
 
         {values.bookAppointment && (
           <div className="contact__details">
-            {/* Preferred Date */}
             <label className="modal__label">
               Preferred Date
               <input
@@ -129,8 +121,6 @@ function ContactForm() {
                 <span className="modal__error">{errors.preferredDate}</span>
               )}
             </label>
-
-            {/* Preferred Time */}
             <label className="modal__label">
               Preferred Time
               <select
@@ -153,8 +143,6 @@ function ContactForm() {
             </label>
           </div>
         )}
-
-        {/* Submit Button */}
         <button type="submit" className="modal__submit" disabled={!isValid}>
           {values.bookAppointment ? "Book" : "Send"}
         </button>

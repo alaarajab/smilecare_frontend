@@ -24,7 +24,6 @@ function Header({ onLoginClick }) {
   const isProfilePage = location.pathname === "/profile";
 
   useEffect(() => {
-    // query ACTIVE NavLink
     const activeLink = menuRef.current?.querySelector(
       ".header__menu-item.active"
     );
@@ -32,7 +31,6 @@ function Header({ onLoginClick }) {
     if (activeLink) {
       const { offsetLeft, offsetWidth } = activeLink;
 
-      // dynamically move navigator
       setNavigatorStyle({
         width: `${offsetWidth}px`,
         transform: `translateX(${offsetLeft}px)`,
@@ -40,7 +38,6 @@ function Header({ onLoginClick }) {
     }
   }, [location.pathname]);
   const onBookAppointmentClick = () => {
-    // navigate to contact page
     navigate("/contact");
   };
 
@@ -50,11 +47,10 @@ function Header({ onLoginClick }) {
         <img
           className="header__logo"
           src={logo}
-          alt="SmileCare Dental Clinic logo" //
+          alt="SmileCare Dental Clinic logo"
         />
 
         <nav className="header__menu" ref={menuRef}>
-          {/* use function form of className to add "active" */}
           <NavLink
             to="/"
             end
@@ -99,13 +95,9 @@ function Header({ onLoginClick }) {
           >
             Contact
           </NavLink>
-
-          {/* single sliding navigator underline */}
           <span className="header__navigator" style={navigatorStyle} />
         </nav>
 
-        {/* ✅ Dynamic Sign In / Logout */}
-        {/* ✅ Dynamic Sign In / Logout */}
         {user ? (
           <div className="header__user">
             <button
@@ -135,7 +127,6 @@ function Header({ onLoginClick }) {
             Book Appointment
           </button>
 
-          {/* dynamic page title */}
           <h2 className="header__page-title">{pageTitle}</h2>
         </div>
       )}

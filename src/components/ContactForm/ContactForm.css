@@ -6,7 +6,7 @@
 .contact__form {
   display: flex;
   flex-direction: column;
-  gap: 16px; /* space between each input */
+  gap: 16px;
 }
 .contact__title {
   text-align: center;

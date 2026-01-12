@@ -21,10 +21,10 @@
   position: relative;
   display: flex;
   flex-direction: column;
-  justify-content: center; /* center content vertically */
-  align-items: center; /* center content horizontally */
+  justify-content: center;
+  align-items: center;
   font-family: "Cabinet Grotesk", sans-serif;
-  text-align: center; /* center text */
+  text-align: center;
   font-family: Cabinet Grotesk;
   font-weight: 700;
   font-style: Bold;
@@ -64,11 +64,11 @@
 
 .confirm-modal__buttons {
   display: flex;
-  flex-direction: column; /* stack buttons vertically */
+  flex-direction: column;
   gap: 12px;
-  width: 100%; /* optional: make buttons full width */
+  width: 100%;
   max-width: 200px;
-  align-items: center; /* center buttons horizontally */
+  align-items: center;
 }
 
 .confirm-modal__delete-btn {

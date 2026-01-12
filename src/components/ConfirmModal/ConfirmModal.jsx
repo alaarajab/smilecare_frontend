@@ -8,7 +8,6 @@ function ConfirmModal({ isOpen, onConfirm, onClose }) {
   return (
     <div className="confirm-modal">
       <div className="confirm-modal__content">
-        {/* Close button */}
         <button
           onClick={onClose}
           type="button"

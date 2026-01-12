@@ -32,9 +32,7 @@
   justify-content: center;
   margin-bottom: 32px;
 }
-
-/* Card */
-.service-card {
+.home__cards-service {
   width: 300px;
   height: 320px;
   background-color: #ffffff;
@@ -43,18 +41,18 @@
   box-shadow: 0 6px 16px rgba(0, 0, 0, 0.08);
 }
 
-.service-card__image {
+.home__cards-service-image {
   height: 272px;
   width: 100%;
 }
 
-.service-card__image img {
+.home__cards-service-image img {
   width: 100%;
   height: 100%;
   object-fit: cover;
 }
 
-.service-card__title {
+.home__cards-service-title {
   height: 28px;
   line-height: 28px;
   font-size: 18px;

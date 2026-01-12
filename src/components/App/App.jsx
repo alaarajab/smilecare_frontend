@@ -30,8 +30,6 @@ function App() {
           <Route path="/staff" element={<Staff />} />
           <Route path="/profile" element={<Profile />} />
         </Routes>
-
-        {/* Global modals */}
         <LoginModal
           isOpen={loginOpen}
           onClose={() => setLoginOpen(false)}

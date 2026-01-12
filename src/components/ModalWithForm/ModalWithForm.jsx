@@ -15,42 +15,32 @@ function ModalWithForm({
 }) {
   if (!isOpen) return null;
 
-  // ✅ NEW: controlled submit handler
   function handleSubmit(e) {
     e.preventDefault(); // disable native validation UI
-    onSubmit(e); // keep your existing submit logic
+    onSubmit(e);
   }
 
   return (
     <div className="modal__overlay" onClick={onClose}>
       <div className="modal__content" onClick={(e) => e.stopPropagation()}>
-        {/* Close Button */}
         <button type="button" className="modal__close" onClick={onClose}>
           <img src={closeIcon} alt="Close" className="modal__close-icoForm" />
         </button>
 
-        {/* Title */}
         <h2 className="modal__title">{title}</h2>
 
-        {/* Form */}
         <form
           className="modal__form"
-          onSubmit={handleSubmit} // ✅ CHANGED
-          noValidate // ✅ DISABLE native browser validation
+          onSubmit={handleSubmit}
+          noValidate //DISABLE native browser validation
         >
           {children}
 
-          {/* Submit Button */}
-          <button
-            type="submit"
-            className="modal__submit"
-            disabled={!isValid} // ✅ controlled validation
-          >
+          <button type="submit" className="modal__submit" disabled={!isValid}>
             {loading ? "Processing..." : submitText}
           </button>
         </form>
 
-        {/* Footer */}
         {footer && <div className="modal__footer">{footer}</div>}
       </div>
     </div>
