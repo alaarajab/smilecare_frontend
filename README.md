@@ -91,3 +91,11 @@ A lightweight **Node.js + Express** backend is implemented to:
 - **API Integration:** Ninja API, local JSON data, optional AI features
 
 ---
+
+## Links
+
+- [Trello: Agile Management Tool](https://trello.com/b/V6WNoFHd/smilecare-dental-clinic)
+
+- [Figma Design](https://www.figma.com/design/eTZhbfgWLREEoAQLVZW11Q/SMILECARE?node-id=22618-606&p=f&t=hvbkAGRaEzZ4f7UR-0)
+
+- [Backend Repository]()
