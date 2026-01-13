@@ -17,3 +17,27 @@
   flex-wrap: wrap;
   gap: 16px;
 }
+
+/* -------------------- Tablet & Mobile -------------------- */
+@media (max-width: 1024px) {
+  .profile-title {
+    font-size: 20px; /* slightly smaller on tablets */
+  }
+
+  .saved-cards {
+    gap: 12px;
+    justify-content: center; /* center cards on smaller screens */
+  }
+}
+
+/* -------------------- Mobile Specific -------------------- */
+@media (max-width: 768px) {
+  .profile-title {
+    font-size: 18px; /* smaller on mobile */
+  }
+
+  .saved-cards {
+    flex-direction: column;
+    gap: 10px;
+  }
+}

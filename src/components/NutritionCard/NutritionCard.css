@@ -1,3 +1,4 @@
+/* -------------------- Input Wrapper -------------------- */
 .nutrition__input {
   display: flex;
   gap: 10px;
@@ -5,23 +6,27 @@
   margin-bottom: 20px;
 }
 
+/* -------------------- Input -------------------- */
 .nutrition__input input {
   padding: 8px 12px;
-  font-size: 16px;
+  font-size: 16px; /* desktop */
   flex: 1;
   border-radius: 8px;
   border: 1px solid #ccc;
 }
 
+/* -------------------- Button -------------------- */
 .nutrition__input-button {
   padding: 8px 16px;
-  font-size: 16px;
+  font-size: 16px; /* desktop */
   background-color: #007bff;
   color: white;
   border: none;
   border-radius: 12px;
   cursor: pointer;
+  transition: background-color 0.2s ease, transform 0.15s ease;
 }
+
 .nutrition__input-button:hover {
   background-color: #1f63cc;
   transform: translateY(-1px);
@@ -32,9 +37,57 @@
   cursor: not-allowed;
   opacity: 0.6;
 }
+
+/* -------------------- Preloader -------------------- */
 .nutrition__preloader {
   display: flex;
   justify-content: center;
   align-items: center;
   height: 200px;
+}
+
+/* ===================================================== */
+/* ---------------- Tablet & Mobile -------------------- */
+/* ===================================================== */
+@media (max-width: 1024px) {
+  .nutrition__input input {
+    font-size: 14px; /* ↓ from 16 */
+    padding: 8px 10px;
+  }
+
+  .nutrition__input-button {
+    font-size: 14px;
+    padding: 8px 14px;
+  }
+
+  .nutrition__preloader {
+    height: 180px;
+  }
+}
+
+/* ===================================================== */
+/* ---------------- Mobile Specific -------------------- */
+/* ===================================================== */
+@media (max-width: 768px) {
+  .nutrition__input {
+    flex-direction: column; /* better UX on mobile */
+    align-items: stretch;
+    gap: 12px;
+  }
+
+  .nutrition__input input {
+    font-size: 13px;
+    padding: 10px 12px;
+  }
+
+  .nutrition__input-button {
+    width: 100%;
+    font-size: 13px;
+    padding: 10px;
+    border-radius: 20px;
+  }
+
+  .nutrition__preloader {
+    height: 150px;
+  }
 }

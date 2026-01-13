@@ -1,6 +1,6 @@
 import "./Header.css";
 import logo from "../../assets/logo.svg";
-import logoutIcon from "../../assets/logoutIcon.svg";
+import menuIcon from "../../assets/menuIcon_mobile.svg";
 import { NavLink, useLocation, useNavigate } from "react-router-dom";
 import { useEffect, useRef, useState } from "react";
 import { useUser } from "../../context/UserContext";
@@ -9,10 +9,15 @@ function Header({ onLoginClick }) {
   const location = useLocation();
   const navigate = useNavigate();
   const menuRef = useRef(null);
-  const [navigatorStyle, setNavigatorStyle] = useState({});
-  const { user, logout } = useUser();
+  const mobileMenuRef = useRef(null);
 
-  const pageMap = {
+  const { user, logout } = useUser();
+  const [navigatorStyle, setNavigatorStyle] = useState({});
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+
+  const isProfilePage = location.pathname === "/profile";
+
+  const pageTitles = {
     "/": "Welcome to our Clinic",
     "/staff": "Our Staff",
     "/services": "Our Dental Services",
@@ -20,29 +25,56 @@ function Header({ onLoginClick }) {
     "/contact": "Contact",
     "/profile": "Your Profile",
   };
-  const pageTitle = pageMap[location.pathname] || "Home";
-  const isProfilePage = location.pathname === "/profile";
+  const pageTitle = pageTitles[location.pathname] || "Home";
 
+  // Toggle mobile menu
+  const toggleMobileMenu = () => setIsMobileMenuOpen((prev) => !prev);
+
+  // Navigate to Book Appointment
+  const onBookAppointmentClick = () => navigate("/contact");
+
+  // Desktop menu underline animation
   useEffect(() => {
     const activeLink = menuRef.current?.querySelector(
       ".header__menu-item.active"
     );
-
     if (activeLink) {
       const { offsetLeft, offsetWidth } = activeLink;
-
       setNavigatorStyle({
         width: `${offsetWidth}px`,
         transform: `translateX(${offsetLeft}px)`,
       });
     }
   }, [location.pathname]);
-  const onBookAppointmentClick = () => {
-    navigate("/contact");
-  };
+
+  // Close mobile menu when clicking outside
+  useEffect(() => {
+    const handleClickOutside = (event) => {
+      if (
+        isMobileMenuOpen &&
+        mobileMenuRef.current &&
+        !mobileMenuRef.current.contains(event.target) &&
+        !event.target.closest(".header__menu-mobile-btn")
+      ) {
+        setIsMobileMenuOpen(false);
+      }
+    };
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => document.removeEventListener("mousedown", handleClickOutside);
+  }, [isMobileMenuOpen]);
+
+  // Menu links array
+  const menuLinks = [
+    { path: "/", label: "Home" },
+    { path: "/staff", label: "Our Staff" },
+    { path: "/services", label: "Services" },
+    { path: "/dental-education", label: "Dental Education" },
+    { path: "/contact", label: "Contact" },
+  ];
 
   return (
     <header className={`header ${isProfilePage ? "header--profile" : ""}`}>
+      {/* ===== TOP BAR ===== */}
       <div className="header__spacer">
         <img
           className="header__logo"
@@ -50,85 +82,121 @@ function Header({ onLoginClick }) {
           alt="SmileCare Dental Clinic logo"
         />
 
-        <nav className="header__menu" ref={menuRef}>
-          <NavLink
-            to="/"
-            end
-            className={({ isActive }) =>
-              `header__menu-item ${isActive ? "active" : ""}`
-            }
+        {user && (
+          <span
+            className="header__greeting header__greeting--mobile"
+            onClick={() => navigate("/profile")}
           >
-            Home
-          </NavLink>
-
-          <NavLink
-            to="/staff"
-            className={({ isActive }) =>
-              `header__menu-item ${isActive ? "active" : ""}`
-            }
-          >
-            Our Staff
-          </NavLink>
-
-          <NavLink
-            to="/services"
-            className={({ isActive }) =>
-              `header__menu-item ${isActive ? "active" : ""}`
-            }
-          >
-            Services
-          </NavLink>
-          <NavLink
-            to="/dental-education"
-            className={({ isActive }) =>
-              `header__menu-item ${isActive ? "active" : ""}`
-            }
-          >
-            Dental Education
-          </NavLink>
-
-          <NavLink
-            to="/contact"
-            className={({ isActive }) =>
-              `header__menu-item ${isActive ? "active" : ""}`
-            }
-          >
-            Contact
-          </NavLink>
-          <span className="header__navigator" style={navigatorStyle} />
-        </nav>
-
-        {user ? (
-          <div className="header__user">
-            <button
-              className="header__greeting"
-              onClick={() => navigate("/profile")}
-            >
-              <span>Hello, {user.name}</span>
-            </button>
-            <button className="header__logout" onClick={logout}>
-              Logout
-            </button>
-          </div>
-        ) : (
-          <button className="header__signIn" onClick={onLoginClick}>
-            Sign In
-          </button>
+            Hello, {user.name}
+          </span>
         )}
+
+        <nav className="header__menu" ref={menuRef}>
+          {/* Desktop Menu */}
+          <div className="header__menu-desktop">
+            {menuLinks.map(({ path, label }) => (
+              <NavLink
+                key={path}
+                to={path}
+                end={path === "/"}
+                className={({ isActive }) =>
+                  `header__menu-item ${isActive ? "active" : ""}`
+                }
+              >
+                {label}
+              </NavLink>
+            ))}
+
+            {user && (
+              <span
+                className="header__greeting header__greeting--desktop"
+                onClick={() => navigate("/profile")}
+              >
+                Hello, {user.name}
+              </span>
+            )}
+
+            <div className="header__desktop-auth">
+              {user ? (
+                <button className="header__logout" onClick={logout}>
+                  Logout
+                </button>
+              ) : (
+                <button className="header__signIn" onClick={onLoginClick}>
+                  Sign In
+                </button>
+              )}
+            </div>
+
+            <span className="header__navigator" style={navigatorStyle} />
+          </div>
+
+          {/* Mobile Menu Button */}
+          <button
+            className="header__menu-mobile-btn"
+            onClick={toggleMobileMenu}
+          >
+            <img src={menuIcon} alt="Menu" />
+          </button>
+        </nav>
       </div>
 
-      <div className="header__divider" />
+      {/* ===== MOBILE MENU & OVERLAY ===== */}
+      {isMobileMenuOpen && (
+        <>
+          <div
+            className="header__mobile-overlay"
+            onClick={() => setIsMobileMenuOpen(false)}
+          />
+          <div className="header__mobile-menu" ref={mobileMenuRef}>
+            {menuLinks.map(({ path, label }) => (
+              <NavLink key={path} to={path} onClick={toggleMobileMenu}>
+                {label}
+              </NavLink>
+            ))}
 
+            <div className="header__mobile-auth">
+              {user ? (
+                <button
+                  className="header__logout"
+                  onClick={() => {
+                    logout();
+                    setIsMobileMenuOpen(false);
+                  }}
+                >
+                  Logout
+                </button>
+              ) : (
+                <button
+                  className="header__signIn"
+                  onClick={() => {
+                    onLoginClick();
+                    setIsMobileMenuOpen(false);
+                  }}
+                >
+                  Sign In
+                </button>
+              )}
+            </div>
+          </div>
+        </>
+      )}
+
+      {/* ===== TITLE SECTION ===== */}
       {!isProfilePage && (
-        <div className="header__title">
-          <h1 className="header__clinic-name">SmileCare Dental Clinic</h1>
-
-          <button className="header__book-app" onClick={onBookAppointmentClick}>
-            Book Appointment
-          </button>
-
-          <h2 className="header__page-title">{pageTitle}</h2>
-        </div>
+        <>
+          <div className="header__divider" />
+          <div className="header__title">
+            <h1 className="header__clinic-name">SmileCare Dental Clinic</h1>
+            <button
+              className="header__book-app"
+              onClick={onBookAppointmentClick}
+            >
+              Book Appointment
+            </button>
+            <h2 className="header__page-title">{pageTitle}</h2>
+          </div>
+        </>
       )}
     </header>
   );

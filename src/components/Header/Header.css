@@ -1,25 +1,40 @@
+/* -------------------- General Header -------------------- */
 .header {
   width: 100%;
   height: 416px;
   background-image: url(../../assets/home_welcome_dental.png);
+  background-size: cover;
+  background-position: center;
+  position: relative;
 }
+
 .header--profile {
   height: 80px;
   background-image: none;
   background-color: #0b1c2d40;
 }
+
+/* -------------------- Header Spacer -------------------- */
 .header__spacer {
   display: flex;
+  align-items: center;
+  justify-content: space-between; /* logo left, menu right */
   margin: 0;
   border-bottom: 1px solid #ffffff33;
+  padding: 0 16px;
 }
 
+/* -------------------- Desktop Menu -------------------- */
 .header__menu {
+  display: flex;
+  align-items: center;
   position: relative;
+}
+
+.header__menu-desktop {
   display: flex;
   align-items: center;
   gap: 15px;
-  margin-left: auto;
   font-family: Roboto, sans-serif;
   font-weight: 500;
   font-size: 16px;
@@ -35,16 +50,8 @@
   text-decoration: none;
   padding: 8px 0;
 }
-.header__greeting {
-  color: #000;
-  margin-left: 50px;
-  font-size: 16px;
-  background: none;
-  border: none;
-  cursor: pointer;
-  font-family: Roboto, sans-serif;
-  font-weight: 700;
-}
+
+/* -------------------- Navigator underline -------------------- */
 .header__navigator {
   position: absolute;
   bottom: -6px;
@@ -55,43 +62,71 @@
   transition: transform 0.3s ease, width 0.3s ease;
 }
 
-.header__signIn {
+/* -------------------- Greeting -------------------- */
+.header__greeting {
+  color: #000;
+  font-size: 16px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-family: Roboto, sans-serif;
+  font-weight: 700;
+}
+
+/* Desktop greeting (inline in menu) */
+.header__greeting--desktop {
+  display: inline-block;
+  margin: 0 10px;
+}
+
+/* Mobile/Tablet greeting (top bar) */
+.header__greeting--mobile {
+  display: none;
+  text-align: center;
+  flex: 1;
+}
+
+/* -------------------- Sign In / Logout (desktop) -------------------- */
+.header__signIn,
+.header__logout {
   padding: 0 8px;
   border: 1px solid #007bff;
   border-radius: 20px;
   background: none;
   color: #007bff;
   cursor: pointer;
-  margin-right: 20px;
-  margin-left: 20px;
-  margin-top: 20px;
   width: 120px;
   height: 40px;
   font-size: 16px;
   font-family: Roboto, sans-serif;
   transition: background-color 0.2s ease, color 0.2s ease;
+  margin: 0 10px;
 }
-.header__signIn:hover {
+
+.header__signIn:hover,
+.header__logout:hover {
   background-color: #007bff;
   color: #ffffff;
   transform: translateY(-1px);
 }
 
+/* -------------------- Header Title -------------------- */
 .header__title {
   font-size: 24px;
   font-family: Roboto Slab, serif;
   text-align: center;
   color: #ffffff;
   margin-top: 100px;
-  margin-left: 50px;
 }
+
 .header__page-title {
-  font-family: "Roboto", sans-serif;
+  font-family: Roboto, sans-serif;
   text-align: center;
   color: #000;
   margin-top: 30px;
 }
 
+/* -------------------- Book Appointment Button -------------------- */
 .header__book-app {
   padding: 12px 28px;
   background-color: #2a7fff;
@@ -102,37 +137,177 @@
   font-weight: 600;
   cursor: pointer;
 }
+
 .header__book-app:hover {
   background-color: #1f63cc;
   transform: translateY(-1px);
 }
 
-.header__user span {
-  font-size: 16px;
-}
-.header__logout {
-  padding: 0 8px;
-  border: 1px solid #007bff;
-  border-radius: 20px;
+/* -------------------- Mobile Menu -------------------- */
+.header__menu-mobile-btn {
+  display: none;
   background: none;
-  color: #007bff;
+  border: none;
   cursor: pointer;
-  margin-right: 20px;
-  margin-left: 20px;
-  margin-top: 20px;
-  width: 120px;
-  height: 40px;
-  font-size: 16px;
+}
+
+.header__menu-mobile-btn img {
+  width: 28px;
+  height: 28px;
+}
+
+.header__mobile-menu {
+  position: absolute;
+  top: 80px;
+  right: 16px;
+  background: #0b1c2d;
+  border-radius: 8px;
+  padding: 12px 0;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  z-index: 1000;
+  width: 200px;
+}
+
+.header__mobile-menu a {
+  color: white;
+  text-decoration: none;
+  padding: 8px 16px;
   font-family: Roboto, sans-serif;
-  transition: background-color 0.2s ease, color 0.2s ease;
 }
-.header__logout:hover {
-  background-color: #007bff;
-  color: #ffffff;
-  transform: translateY(-1px);
+
+.header__mobile-menu a:hover {
+  background-color: #ffffff1a;
 }
-.header__logout-image {
-  width: 20px;
-  height: 20px;
-  margin-left: 20px;
+
+/* -------------------- Desktop Auth Buttons -------------------- */
+.header__desktop-auth {
+  display: flex;
+  align-items: center;
+  margin-left: 20px; /* spacing from menu */
+  gap: 10px;
+}
+
+/* -------------------- Mobile Auth Buttons -------------------- */
+.header__mobile-auth {
+  display: none; /* hidden on desktop */
+  flex-direction: column;
+  gap: 12px;
+  padding: 8px 16px;
+}
+
+.header__mobile-auth .header__signIn,
+.header__mobile-auth .header__logout {
+  width: 100%;
+  margin: 0;
+  padding: 10px 0;
+  text-align: center;
+}
+.header__mobile-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  z-index: 999;
+}
+
+.header__mobile-menu {
+  position: fixed;
+  top: 0;
+  right: 0;
+  height: 100%;
+  width: 220px;
+  background-color: #0b1c2d;
+  display: flex;
+  flex-direction: column;
+  padding-top: 60px;
+  gap: 12px;
+  z-index: 1000;
+  border-radius: 0 0 0 8px;
+  transition: transform 0.3s ease;
+}
+
+/* -------------------- Tablet & Mobile -------------------- */
+@media (max-width: 1024px) {
+  /* Hide desktop menu and greeting */
+  .header__menu-desktop,
+  .header__greeting--desktop {
+    display: none;
+  }
+
+  /* Show hamburger */
+  .header__menu-mobile-btn {
+    display: block;
+  }
+  .header--profile {
+    height: 80px;
+  }
+
+  /* Show mobile greeting in spacer */
+  .header__greeting--mobile {
+    display: block;
+    flex: 1;
+    text-align: center;
+    margin: 0 10px;
+  }
+
+  /* Mobile auth visible inside dropdown */
+  .header__mobile-auth {
+    display: flex;
+  }
+
+  .header__desktop-auth {
+    display: none;
+  }
+
+  /* Adjust header height for tablet */
+  .header {
+    height: 260px;
+    background-position: center;
+  }
+
+  .header__title {
+    margin-top: 20px;
+    font-size: 18px;
+  }
+
+  .header__book-app {
+    padding: 10px 20px;
+    font-size: 14px;
+  }
+
+  .header__page-title {
+    font-size: 20px;
+    margin-top: 20px;
+  }
+}
+@media (min-width: 769px) and (max-width: 1023px) {
+  .header--profile {
+    height: 80px;
+  }
+}
+/* -------------------- Mobile Specific -------------------- */
+@media (max-width: 768px) {
+  /* Same as tablet, but can tweak spacing if needed */
+  .header {
+    height: 240px;
+  }
+  .header__title {
+    font-size: 16px;
+  }
+  .header--profile {
+    height: 80px;
+  }
+
+  .header__book-app {
+    font-size: 14px;
+  }
+
+  .header__page-title {
+    font-size: 16px;
+    margin-top: 15px;
+  }
 }

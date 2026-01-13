@@ -1,15 +1,17 @@
+/* -------------------- Preloader Container -------------------- */
 .preloader-container {
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  height: 200px; /* adjust based on your layout */
+  height: 200px; /* desktop */
   position: relative;
 }
 
+/* -------------------- Spinner -------------------- */
 .circle-preloader {
   display: block;
-  width: 50px;
+  width: 50px; /* desktop */
   height: 50px;
   border: 4px solid #444;
   border-bottom-color: #888;
@@ -18,14 +20,56 @@
   margin-bottom: 10px;
 }
 
+/* -------------------- Text -------------------- */
 .preloader-text {
-  font-size: 14px;
+  font-size: 14px; /* desktop */
   color: #333;
   text-align: center;
 }
 
+/* -------------------- Animation -------------------- */
 @keyframes spin {
   100% {
     transform: rotate(360deg);
+  }
+}
+
+/* ===================================================== */
+/* ---------------- Tablet & Mobile -------------------- */
+/* ===================================================== */
+@media (max-width: 1024px) {
+  .preloader-container {
+    height: 180px;
+  }
+
+  .circle-preloader {
+    width: 44px;
+    height: 44px;
+    border-width: 3.5px;
+    margin-bottom: 8px;
+  }
+
+  .preloader-text {
+    font-size: 13px;
+  }
+}
+
+/* ===================================================== */
+/* ---------------- Mobile Specific -------------------- */
+/* ===================================================== */
+@media (max-width: 768px) {
+  .preloader-container {
+    height: 150px;
+  }
+
+  .circle-preloader {
+    width: 38px;
+    height: 38px;
+    border-width: 3px;
+    margin-bottom: 6px;
+  }
+
+  .preloader-text {
+    font-size: 12px;
   }
 }

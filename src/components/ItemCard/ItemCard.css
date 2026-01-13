@@ -1,5 +1,6 @@
+/* -------------------- Card -------------------- */
 .card {
-  width: 600px;
+  width: 600px; /* desktop */
   height: 300px;
   background: #fff;
   border-radius: 12px;
@@ -12,35 +13,7 @@
   gap: 12px;
 }
 
-.card__bookmark {
-  position: absolute;
-  top: 16px;
-  right: 16px;
-  background: none;
-  border: none;
-  cursor: pointer;
-}
-
-.card__bookmark img {
-  width: 24px;
-  height: 24px;
-}
-
-.card__content {
-  text-align: left;
-}
-
-.card__title {
-  font-size: 24px;
-  font-weight: 600;
-  margin-bottom: 12px;
-  /*text-transform: capitalize;*/
-}
-
-.card__description {
-  font-size: 16px;
-  line-height: 1.5;
-}
+.card__bookmark,
 .card__delete {
   position: absolute;
   top: 16px;
@@ -50,7 +23,71 @@
   cursor: pointer;
 }
 
+.card__bookmark img,
 .card__delete img {
   width: 24px;
   height: 24px;
+}
+
+.card__content {
+  text-align: left;
+}
+
+.card__title {
+  font-size: 24px; /* desktop */
+  font-weight: 600;
+  margin-bottom: 12px;
+}
+
+.card__description {
+  font-size: 16px; /* desktop */
+  line-height: 1.5;
+}
+
+/* -------------------- Tablet & Mobile -------------------- */
+@media (max-width: 1024px) {
+  .card {
+    width: 540px; /* 600 * 0.9 */
+    height: 270px; /* 300 * 0.9 */
+    padding: 20px;
+    gap: 10px;
+  }
+
+  .card__title {
+    font-size: 22px;
+  }
+
+  .card__description {
+    font-size: 14px;
+  }
+
+  .card__bookmark img,
+  .card__delete img {
+    width: 22px;
+    height: 22px;
+  }
+}
+
+/* -------------------- Mobile Specific -------------------- */
+@media (max-width: 768px) {
+  .card {
+    width: 400px; /* 600 * 0.8 */
+    height: 240px; /* 300 * 0.8 */
+    padding: 16px;
+    gap: 8px;
+  }
+
+  .card__title {
+    font-size: 20px;
+  }
+
+  .card__description {
+    font-size: 13px;
+  }
+
+  .card__bookmark img,
+  .card__delete img {
+    width: 20px;
+    height: 20px;
+  }
 }

@@ -201,19 +201,45 @@
   }
 }
 
-@media (max-width: 480px) {
+/* ===================================================== */
+/* -------------------- Tablet & Mobile ----------------- */
+/* ===================================================== */
+@media (max-width: 1024px) {
+  .modal__content {
+    max-width: 380px;
+    padding: 24px 20px;
+  }
+
+  .modal__title {
+    font-size: 22px;
+  }
+
+  .modal__input,
+  .modal__label,
+  .modal__footer,
+  .modal__switch-button {
+    font-size: 13px;
+  }
+}
+
+/* ===================================================== */
+/* -------------------- Mobile Specific ----------------- */
+/* ===================================================== */
+@media (max-width: 768px) {
   .modal__content {
     margin: 0 16px;
-    padding: 24px 20px;
+    max-width: 100%;
+    padding: 20px 16px;
+  }
+
+  .modal__title {
+    font-size: 20px;
   }
 
   .modal__submit {
     padding: 10px;
   }
 
-  .modal__title {
-    font-size: 20px;
-  }
   .modal__close-icoForm {
     width: 20px;
     height: 20px;
