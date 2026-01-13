@@ -44,13 +44,17 @@ function Staff() {
 
       <div className="staff__grid">
         {staffMembers.map((member, index) => (
-          <div className="staff__card" key={index}>
-            <img src={staffImg} alt={member.name} className="staff__image" />
+          <div className="staff__grid-card" key={index}>
+            <img
+              src={staffImg}
+              alt={member.name}
+              className="staff__grid-image"
+            />
 
-            <div className="staff__info">
-              <h2 className="staff__name">{member.name}</h2>
-              <h3 className="staff__title">{member.title}</h3>
-              <p className="staff__experience">{member.experience}</p>
+            <div className="staff__grid-info">
+              <h2 className="staff__grid-info-name">{member.name}</h2>
+              <h3 className="staff__grid-info-title">{member.title}</h3>
+              <p className="staff__grid-info-experience">{member.experience}</p>
             </div>
           </div>
         ))}

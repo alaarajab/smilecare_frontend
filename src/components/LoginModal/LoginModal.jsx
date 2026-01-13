@@ -4,14 +4,12 @@ import { useUser } from "../../context/UserContext";
 import { useNavigate } from "react-router-dom";
 
 function LoginModal({ isOpen, onClose, onRegisterClick }) {
-  // ✅ useForm manages all input values and validation
   const { values, errors, handleChange, resetForm, isValid } = useForm(
     {
       email: "",
       password: "",
     },
     {
-      // ✅ Custom validation rules
       email: (value) =>
         !/^\S+@\S+\.\S+$/.test(value) ? "Invalid email address" : "",
       password: (value) =>
@@ -20,22 +18,22 @@ function LoginModal({ isOpen, onClose, onRegisterClick }) {
   );
 
   const handleClose = () => {
-    resetForm(); // ✅ clears everything
-    onClose(); // ✅ closes modal
+    resetForm();
+    onClose();
   };
   const { login } = useUser();
   const navigate = useNavigate();
 
   /*const handleSubmit = () => {
-    console.log("Login values:", values); // ✅ values from useForm
+    console.log("Login values:", values); 
 
-    resetForm(); // ✅ reset after submit
+    resetForm(); 
     onClose();
   };*/
   const handleSubmit = () => {
     const loggedInUser = { name: "Alaa", email: values.email };
-    login(loggedInUser); // ✅ sets user
-    onClose(); // close modal
+    login(loggedInUser);
+    onClose();
     navigate("/profile");
   };
 
@@ -60,7 +58,6 @@ function LoginModal({ isOpen, onClose, onRegisterClick }) {
         </>
       }
     >
-      {/* ✅ controlled inputs */}
       {/* Email */}
       <label htmlFor="login-email" className="modal__label">
         Email

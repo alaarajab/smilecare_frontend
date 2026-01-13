@@ -74,7 +74,6 @@ function Header({ onLoginClick }) {
 
   return (
     <header className={`header ${isProfilePage ? "header--profile" : ""}`}>
-      {/* ===== TOP BAR ===== */}
       <div className="header__spacer">
         <img
           className="header__logo"
@@ -141,7 +140,7 @@ function Header({ onLoginClick }) {
         </nav>
       </div>
 
-      {/* ===== MOBILE MENU & OVERLAY ===== */}
+      {/* MOBILE MENU & OVERLAY */}
       {isMobileMenuOpen && (
         <>
           <div
@@ -182,7 +181,6 @@ function Header({ onLoginClick }) {
         </>
       )}
 
-      {/* ===== TITLE SECTION ===== */}
       {!isProfilePage && (
         <>
           <div className="header__divider" />

@@ -1,4 +1,3 @@
-/* -------------------- Card -------------------- */
 .card {
   width: 600px; /* desktop */
   height: 300px;
@@ -40,11 +39,10 @@
 }
 
 .card__description {
-  font-size: 16px; /* desktop */
+  font-size: 16px;
   line-height: 1.5;
 }
 
-/* -------------------- Tablet & Mobile -------------------- */
 @media (max-width: 1024px) {
   .card {
     width: 540px; /* 600 * 0.9 */
@@ -68,11 +66,10 @@
   }
 }
 
-/* -------------------- Mobile Specific -------------------- */
 @media (max-width: 768px) {
   .card {
-    width: 400px; /* 600 * 0.8 */
-    height: 240px; /* 300 * 0.8 */
+    width: 400px;
+    height: 240px;
     padding: 16px;
     gap: 8px;
   }

@@ -114,7 +114,7 @@
   }
 }
 
-/* -------------------- Mobile Specific -------------------- */
+/* Mobile Specific */
 @media (max-width: 768px) {
   .confirm-modal__content {
     width: 400px;

@@ -61,7 +61,7 @@
 .modal__label {
   display: flex;
   flex-direction: column;
-  width: 100%; /* ensure label doesn’t exceed form width */
+  width: 100%;
   font-size: 14px;
   color: #374151;
   box-sizing: border-box;
@@ -83,14 +83,14 @@
 
 .modal__error {
   display: block;
-  max-width: 100%; /* ✅ prevent overflow */
-  box-sizing: border-box; /* ✅ include padding in width */
+  max-width: 100%;
+  box-sizing: border-box;
   background: #fee2e2;
   color: #b91c1c;
   padding: 6px 10px;
   border-radius: 6px;
   font-size: 12px;
-  margin-top: 6px; /* space from input */
+  margin-top: 6px;
 }
 
 .modal__error {
@@ -180,7 +180,6 @@
   border-radius: 4px;
 }
 
-/* Animations */
 @keyframes modal-fade-in {
   from {
     opacity: 0;
@@ -201,9 +200,6 @@
   }
 }
 
-/* ===================================================== */
-/* -------------------- Tablet & Mobile ----------------- */
-/* ===================================================== */
 @media (max-width: 1024px) {
   .modal__content {
     max-width: 380px;
@@ -222,9 +218,6 @@
   }
 }
 
-/* ===================================================== */
-/* -------------------- Mobile Specific ----------------- */
-/* ===================================================== */
 @media (max-width: 768px) {
   .modal__content {
     margin: 0 16px;

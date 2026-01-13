@@ -1,4 +1,3 @@
-/* -------------------- General Header -------------------- */
 .header {
   width: 100%;
   height: 416px;
@@ -14,7 +13,6 @@
   background-color: #0b1c2d40;
 }
 
-/* -------------------- Header Spacer -------------------- */
 .header__spacer {
   display: flex;
   align-items: center;
@@ -24,7 +22,7 @@
   padding: 0 16px;
 }
 
-/* -------------------- Desktop Menu -------------------- */
+/*  Desktop Menu  */
 .header__menu {
   display: flex;
   align-items: center;
@@ -51,7 +49,6 @@
   padding: 8px 0;
 }
 
-/* -------------------- Navigator underline -------------------- */
 .header__navigator {
   position: absolute;
   bottom: -6px;
@@ -62,7 +59,6 @@
   transition: transform 0.3s ease, width 0.3s ease;
 }
 
-/* -------------------- Greeting -------------------- */
 .header__greeting {
   color: #000;
   font-size: 16px;
@@ -73,20 +69,17 @@
   font-weight: 700;
 }
 
-/* Desktop greeting (inline in menu) */
 .header__greeting--desktop {
   display: inline-block;
   margin: 0 10px;
 }
 
-/* Mobile/Tablet greeting (top bar) */
 .header__greeting--mobile {
   display: none;
   text-align: center;
   flex: 1;
 }
 
-/* -------------------- Sign In / Logout (desktop) -------------------- */
 .header__signIn,
 .header__logout {
   padding: 0 8px;
@@ -110,7 +103,6 @@
   transform: translateY(-1px);
 }
 
-/* -------------------- Header Title -------------------- */
 .header__title {
   font-size: 24px;
   font-family: Roboto Slab, serif;
@@ -126,7 +118,6 @@
   margin-top: 30px;
 }
 
-/* -------------------- Book Appointment Button -------------------- */
 .header__book-app {
   padding: 12px 28px;
   background-color: #2a7fff;
@@ -143,7 +134,7 @@
   transform: translateY(-1px);
 }
 
-/* -------------------- Mobile Menu -------------------- */
+/* Mobile Menu */
 .header__menu-mobile-btn {
   display: none;
   background: none;
@@ -181,7 +172,7 @@
   background-color: #ffffff1a;
 }
 
-/* -------------------- Desktop Auth Buttons -------------------- */
+/*  Desktop Auth Buttons */
 .header__desktop-auth {
   display: flex;
   align-items: center;
@@ -189,7 +180,7 @@
   gap: 10px;
 }
 
-/* -------------------- Mobile Auth Buttons -------------------- */
+/* Mobile Auth Buttons */
 .header__mobile-auth {
   display: none; /* hidden on desktop */
   flex-direction: column;
@@ -230,7 +221,6 @@
   transition: transform 0.3s ease;
 }
 
-/* -------------------- Tablet & Mobile -------------------- */
 @media (max-width: 1024px) {
   /* Hide desktop menu and greeting */
   .header__menu-desktop,
@@ -289,9 +279,8 @@
     height: 80px;
   }
 }
-/* -------------------- Mobile Specific -------------------- */
+
 @media (max-width: 768px) {
-  /* Same as tablet, but can tweak spacing if needed */
   .header {
     height: 240px;
   }

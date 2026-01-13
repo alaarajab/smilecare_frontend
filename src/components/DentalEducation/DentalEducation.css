@@ -4,7 +4,7 @@
   padding: 40px 20px;
   font-family: Roboto, sans-serif;
   font-weight: 500;
-  font-size: 16px; /* desktop */
+  font-size: 16px;
 }
 
 .education__container {
@@ -15,43 +15,43 @@
 
 .education__dropdown select {
   padding: 8px 12px;
-  font-size: 16px; /* desktop */
+  font-size: 16px;
   border-radius: 8px;
   border: 1px solid #ccc;
   margin-bottom: 30px;
 }
 
-/* -------------------- Tablet & Mobile -------------------- */
+/* Tablet & Mobile */
 @media (max-width: 1024px) {
   .education {
     padding: 36px 16px;
-    font-size: 14px; /* 16 * 0.9 */
+    font-size: 14px;
   }
 
   .education__container {
-    max-width: 720px; /* 800 * 0.9 */
+    max-width: 720px;
   }
 
   .education__dropdown select {
-    font-size: 14px; /* 16 * 0.9 */
+    font-size: 14px;
     padding: 7px 10px;
     margin-bottom: 25px;
   }
 }
 
-/* -------------------- Mobile Specific -------------------- */
+/*  Mobile */
 @media (max-width: 768px) {
   .education {
     padding: 32px 12px;
-    font-size: 13px; /* 16 * 0.8 */
+    font-size: 13px;
   }
 
   .education__container {
-    max-width: 640px; /* 800 * 0.8 */
+    max-width: 640px;
   }
 
   .education__dropdown select {
-    font-size: 13px; /* 16 * 0.8 */
+    font-size: 13px;
     padding: 6px 8px;
     margin-bottom: 20px;
   }

@@ -29,11 +29,7 @@ function ModalWithForm({
 
         <h2 className="modal__title">{title}</h2>
 
-        <form
-          className="modal__form"
-          onSubmit={handleSubmit}
-          noValidate //DISABLE native browser validation
-        >
+        <form className="modal__form" onSubmit={handleSubmit} noValidate>
           {children}
 
           <button type="submit" className="modal__submit" disabled={!isValid}>

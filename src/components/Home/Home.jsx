@@ -5,6 +5,7 @@ import generalImg from "../../assets/general.png";
 import cosmeticImg from "../../assets/cosmetic.png";
 import implantImg from "../../assets/implant.png";
 import endoImg from "../../assets/endodontics.png";
+import googleIcon from "../../assets/google_icon.png";
 
 function Home() {
   const services = [
@@ -25,7 +26,21 @@ function Home() {
       image: endoImg,
     },
   ];
-
+  const testimonials = [
+    { name: "John D.", review: "Amazing service and friendly staff!" },
+    {
+      name: "Sarah K.",
+      review: "Highly recommend! My teeth have never looked better.",
+    },
+    {
+      name: "Michael B.",
+      review: "Professional and caring dentists. 5 stars!",
+    },
+    {
+      name: "Emily R.",
+      review: "Excellent experience, very comfortable and clean.",
+    },
+  ];
   return (
     <div className="home__page">
       <p className="home__intro">
@@ -54,6 +69,28 @@ function Home() {
       <Link to="/services" className="home__learn-more">
         Learn More
       </Link>
+      {/* Testimonials */}
+      <h2 className="home__highlight-title">What Our Patients Say</h2>
+
+      <div className="home__testimonials">
+        {testimonials.map((t, index) => (
+          <div className="home__testimonial-card" key={index}>
+            <div className="home__testimonial-stars">★★★★★</div>
+            <p className="home__testimonial-review">"{t.review}"</p>
+            <p className="home__testimonial-name">— {t.name}</p>
+          </div>
+        ))}
+      </div>
+      <p className="home__highlight-info">
+        We have over 1000 positive reviews on Google
+      </p>
+      <a
+        href="https://www.google.com/maps/place/Your-Clinic-Name/reviews"
+        target="_blank"
+        rel="noopener noreferrer"
+      >
+        <img className="home__google-logo" src={googleIcon} alt="Google Logo" />
+      </a>
     </div>
   );
 }

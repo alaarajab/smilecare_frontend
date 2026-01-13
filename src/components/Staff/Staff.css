@@ -1,4 +1,3 @@
-/* -------------------- Desktop (Default) -------------------- */
 .staff {
   padding: 40px 20px;
   font-family: Roboto, sans-serif;
@@ -14,7 +13,7 @@
   margin-bottom: 16px;
   text-align: center;
 }
-/* Grid layout */
+
 .staff__grid {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
@@ -22,7 +21,7 @@
   justify-items: center;
 }
 
-.staff__card {
+.staff__grid-card {
   width: 300px;
   height: 500px;
   border-radius: 12px;
@@ -33,13 +32,13 @@
   background-color: #fff;
 }
 
-.staff__image {
+.staff__grid-image {
   width: 100%;
   height: 272px;
   object-fit: cover;
 }
 
-.staff__info {
+.staff__grid-info {
   padding: 16px;
   flex: 1;
   display: flex;
@@ -47,13 +46,13 @@
   align-items: center;
 }
 
-.staff__name {
+.staff__grid-info-name {
   font-size: 20px;
   font-weight: 600;
   margin-bottom: 4px;
 }
 
-.staff__role {
+.staff__grid-info-title {
   font-size: 16px;
   font-weight: 500;
   margin-bottom: 8px;
@@ -61,14 +60,13 @@
   text-align: center;
 }
 
-.staff__experience {
+.staff__grid-info-experience {
   font-size: 14px;
   color: #333;
   line-height: 1.4;
   text-align: center;
 }
 
-/* -------------------- Tablet & Mobile -------------------- */
 @media (max-width: 1024px) {
   .staff {
     padding: 32px 16px;
@@ -100,7 +98,6 @@
   }
 }
 
-/* -------------------- Mobile Specific -------------------- */
 @media (max-width: 768px) {
   .staff {
     padding: 24px 12px;

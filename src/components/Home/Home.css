@@ -1,4 +1,3 @@
-/* -------------------- Desktop (Default) -------------------- */
 .home__page {
   display: flex;
   flex-direction: column;
@@ -79,8 +78,52 @@
   background-color: #1f63cc;
   transform: translateY(-1px);
 }
+.home__google-logo {
+  width: 150px;
+  margin-top: 16px;
+  cursor: pointer;
+}
 
-/* -------------------- Tablet & Mobile -------------------- */
+.home__testimonial-intro {
+  text-align: center;
+  font-size: 16px;
+  margin-bottom: 16px;
+  color: #555;
+}
+
+.home__testimonials {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 24px;
+  justify-content: center;
+  margin-bottom: 32px;
+}
+
+.home__testimonial-card {
+  background-color: #ffffff;
+  padding: 16px;
+  border-radius: 12px;
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.08);
+  text-align: center;
+}
+
+.home__testimonial-stars {
+  color: #f5a623; /* gold stars */
+  font-size: 18px;
+  margin-bottom: 8px;
+}
+
+.home__testimonial-review {
+  font-size: 16px;
+  margin-bottom: 8px;
+  font-style: italic;
+}
+
+.home__testimonial-name {
+  font-weight: 600;
+  font-size: 14px;
+  color: #333;
+}
 @media (max-width: 1024px) {
   .home__page {
     font-size: 15px;
@@ -103,9 +146,12 @@
   .home__cards-service-title {
     font-size: 16px;
   }
+  .home__testimonials {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 16px;
+  }
 }
 
-/* -------------------- Mobile Specific -------------------- */
 @media (max-width: 768px) {
   .home__page {
     font-size: 14px;
@@ -138,5 +184,13 @@
   .home__learn-more {
     padding: 10px 22px;
     font-size: 14px;
+  }
+
+  .home__testimonials {
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
+  .home__google-logo {
+    width: 120px;
   }
 }

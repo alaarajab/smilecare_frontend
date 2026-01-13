@@ -18,22 +18,20 @@
   gap: 16px;
 }
 
-/* -------------------- Tablet & Mobile -------------------- */
 @media (max-width: 1024px) {
   .profile-title {
-    font-size: 20px; /* slightly smaller on tablets */
+    font-size: 20px;
   }
 
   .saved-cards {
     gap: 12px;
-    justify-content: center; /* center cards on smaller screens */
+    justify-content: center;
   }
 }
 
-/* -------------------- Mobile Specific -------------------- */
 @media (max-width: 768px) {
   .profile-title {
-    font-size: 18px; /* smaller on mobile */
+    font-size: 18px;
   }
 
   .saved-cards {

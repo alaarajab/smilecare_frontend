@@ -11,24 +11,22 @@
 /* Each service container stacks vertically */
 .service {
   display: flex;
-  flex-direction: column; /* stack image + content-wrapper + divider */
+  flex-direction: column;
   gap: 20px;
   align-items: center;
-  width: 100%; /* make divider span full width */
+  width: 100%;
 }
 
-/* Image */
 .service img {
   width: 300px;
   border-radius: 12px;
 }
 
-/* Content + Video side by side */
 .service__content-wrapper {
   display: flex;
   gap: 50px;
   align-items: flex-start;
-  justify-content: center; /* center content + video horizontally */
+  justify-content: center;
   flex-wrap: wrap; /* allow wrapping on smaller screens */
   width: 100%;
 }
@@ -50,8 +48,6 @@
 .service__content li {
   margin-bottom: 6px;
 }
-
-/* Video */
 .service__video iframe {
   width: 360px;
   height: 270px;
@@ -59,24 +55,22 @@
   border: none;
 }
 
-/* Divider under each service */
 .service__divider {
   display: block;
-  width: 100%; /* spans full width of .service */
+  width: 100%;
   height: 1px;
   background-color: #ddd;
   margin: 40px 0;
   flex-shrink: 0;
 }
 
-/* -------------------- Tablet & Mobile -------------------- */
 @media (max-width: 1024px) {
   .services__title {
-    font-size: 28px; /* slightly smaller on tablets */
+    font-size: 28px;
   }
 
   .service__content-wrapper {
-    gap: 30px; /* reduce spacing between content & video */
+    gap: 30px;
   }
 
   .service img {
@@ -97,10 +91,9 @@
   }
 }
 
-/* -------------------- Mobile Specific -------------------- */
 @media (max-width: 768px) {
   .services__title {
-    font-size: 24px; /* smaller on mobile */
+    font-size: 24px;
     margin-bottom: 24px;
   }
 
