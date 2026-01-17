@@ -90,7 +90,11 @@ A lightweight **Node.js + Express** backend is implemented to:
 - **Styling:** CSS (BEM methodology)
 - **API Integration:** Ninja API, local JSON data, optional AI features
 
----
+## How to Run the Mock Server for Dental Tips
+
+- Run the following command:
+
+- json-server --watch db.json --port 4000
 
 ## Links
 
