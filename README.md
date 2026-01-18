@@ -102,6 +102,6 @@ A lightweight **Node.js + Express** backend is implemented to:
 
 - [Figma Design](https://www.figma.com/design/eTZhbfgWLREEoAQLVZW11Q/SMILECARE?node-id=22618-606&p=f&t=hvbkAGRaEzZ4f7UR-0)
 
-- [Backend Repository]()
+- [Backend Repository](https://github.com/alaarajab/smilecare_backend)
 
-- [Project Pitch Video]()
+- [Project Pitch Video](https://youtu.be/M2-xkqREXTo)
