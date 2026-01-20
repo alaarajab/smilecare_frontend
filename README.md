@@ -105,3 +105,5 @@ A lightweight **Node.js + Express** backend is implemented to:
 - [Backend Repository](https://github.com/alaarajab/smilecare_backend)
 
 - [Project Pitch Video](https://youtu.be/M2-xkqREXTo)
+
+-[deployment link](https://alaarajab.github.io/smilecare_frontend/)
