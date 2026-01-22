@@ -4,6 +4,7 @@ import "./ContactForm.css";
 
 function ContactForm() {
   const [submitted, setSubmitted] = useState(false);
+  const [submittedType, setSubmittedType] = useState(""); // ✅ Track if user submitted 'send' or 'book'
 
   const timeSlots = [
     "09:00 AM",
@@ -35,7 +36,7 @@ function ContactForm() {
         all.bookAppointment && !v ? "Select a date" : "",
       preferredTime: (v, all) =>
         all.bookAppointment && !v ? "Select a time" : "",
-    }
+    },
   );
 
   const handleSubmit = (e) => {
@@ -43,8 +44,11 @@ function ContactForm() {
 
     console.log("Form submitted:", values);
 
+    // Store the type of submission before resetting the form
+    setSubmittedType(values.bookAppointment ? "book" : "send");
+
     resetForm();
-    setSubmitted(true);
+    setSubmitted(true); // Show confirmation message
   };
 
   return (
@@ -69,6 +73,7 @@ function ContactForm() {
             <span className="modal__error">{errors.fullName}</span>
           )}
         </label>
+
         <label className="modal__label">
           Email Address
           <input
@@ -82,6 +87,7 @@ function ContactForm() {
           />
           {errors.email && <span className="modal__error">{errors.email}</span>}
         </label>
+
         <label className="modal__label">
           Phone Number
           <input
@@ -95,6 +101,7 @@ function ContactForm() {
           />
           {errors.phone && <span className="modal__error">{errors.phone}</span>}
         </label>
+
         <label className="contact__checkbox">
           <input
             type="checkbox"
@@ -121,6 +128,7 @@ function ContactForm() {
                 <span className="modal__error">{errors.preferredDate}</span>
               )}
             </label>
+
             <label className="modal__label">
               Preferred Time
               <select
@@ -143,15 +151,19 @@ function ContactForm() {
             </label>
           </div>
         )}
+
+        {/* Button is active only if form is valid */}
         <button type="submit" className="modal__submit" disabled={!isValid}>
           {values.bookAppointment ? "Book" : "Send"}
         </button>
       </form>
 
+      {/* Confirmation message based on type of submission */}
       {submitted && (
         <p className="contact__confirmation-text">
-          We will contact you to confirm your appointment. All information is
-          private.
+          {submittedType === "book"
+            ? "We will contact you to confirm your appointment. All information is private."
+            : "We will contact you soon."}
         </p>
       )}
     </div>

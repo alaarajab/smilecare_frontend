@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 export function useForm(initialValues = {}, validators = {}) {
   const [values, setValues] = useState(initialValues);
@@ -6,44 +6,48 @@ export function useForm(initialValues = {}, validators = {}) {
   const [touched, setTouched] = useState({});
   const [isValid, setIsValid] = useState(false);
 
+  // Validate all fields whenever values or errors change
+  useEffect(() => {
+    const noErrors = Object.values(errors).every((e) => !e);
+    const requiredFieldsFilled = Object.keys(validators).every((field) => {
+      const value = values[field];
+      const error = validators[field] ? validators[field](value, values) : "";
+      return !error;
+    });
+
+    setIsValid(noErrors && requiredFieldsFilled);
+  }, [values, errors, validators]);
+
+  // Update values and run validation
   function handleChange(e) {
-    const { name, value } = e.target;
+    const { name, type, value, checked } = e.target;
 
     setValues((prev) => {
-      const nextValues = { ...prev, [name]: value };
+      const nextValues = {
+        ...prev,
+        [name]: type === "checkbox" ? checked : value,
+      };
 
+      // Validate the changed field
       let error = "";
-
-      if (e.target.validationMessage) {
-        error = e.target.validationMessage;
+      if (validators[name]) {
+        error = validators[name](nextValues[name], nextValues);
       }
 
-      if (!error && validators[name]) {
-        error = validators[name](value, nextValues);
-      }
-
-      setErrors((prevErrors) => {
-        const nextErrors = { ...prevErrors, [name]: error };
-
-        const allFieldsFilled = Object.values(nextValues).every(
-          (v) => v.toString().trim() !== ""
-        );
-        const noErrors = Object.values(nextErrors).every((e) => !e);
-        setIsValid(allFieldsFilled && noErrors);
-
-        return nextErrors;
-      });
+      setErrors((prevErrors) => ({ ...prevErrors, [name]: error }));
 
       return nextValues;
     });
   }
 
-  // only mark field as touched on blur
+  // Track touched fields (optional for showing errors only after blur)
+  
   function handleBlur(e) {
     const { name } = e.target;
     setTouched((prev) => ({ ...prev, [name]: true }));
   }
 
+  // Reset form to initial state
   function resetForm() {
     setValues(initialValues);
     setErrors({});
@@ -55,7 +59,7 @@ export function useForm(initialValues = {}, validators = {}) {
     values,
     errors,
     touched,
-    isValid,
+    isValid, // now automatically considers conditional validation
     handleChange,
     handleBlur,
     resetForm,
