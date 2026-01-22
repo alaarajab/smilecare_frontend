@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import NutritionCard from "../NutritionCard/NutritionCard";
 import ItemCard from "../ItemCard/ItemCard";
+import data from "../../utils/db.json";
 import "./DentalEducation.css";
 
 function DentalEducation() {
@@ -8,22 +9,18 @@ function DentalEducation() {
   const [selectedSymptom, setSelectedSymptom] = useState(null);
   const [tipsData, setTipsData] = useState(null);
 
-  // Fetch all dental tips for the dropdown
   useEffect(() => {
-    fetch("http://localhost:4000/dentalTips")
-      .then((res) => res.json())
-      .then((data) => setSymptoms(data))
-      .catch((err) => console.error(err));
+    setSymptoms(data.dentalTips);
   }, []);
 
-  // Fetch the selected symptom details directly from the API
   useEffect(() => {
     if (!selectedSymptom) return;
 
-    fetch(`http://localhost:4000/dentalTips/${selectedSymptom}`)
-      .then((res) => res.json())
-      .then((data) => setTipsData(data))
-      .catch((err) => console.error(err));
+    const selectedTip = data.dentalTips.find(
+      (tip) => tip.id === selectedSymptom,
+    );
+
+    setTipsData(selectedTip || null);
   }, [selectedSymptom]);
 
   return (

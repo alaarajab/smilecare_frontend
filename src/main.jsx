@@ -7,10 +7,10 @@ import { UserProvider } from "./context/UserContext.jsx";
 
 ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
-    <BrowserRouter>
+    <BrowserRouter basename="/smilecare_frontend">
       <UserProvider>
         <App />
       </UserProvider>
     </BrowserRouter>
-  </React.StrictMode>
+  </React.StrictMode>,
 );
