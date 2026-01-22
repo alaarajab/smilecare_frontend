@@ -92,9 +92,13 @@ A lightweight **Node.js + Express** backend is implemented to:
 
 ## How to Run the Mock Server for Dental Tips
 
-- Run the following command:
+## API Configuration
 
-- json-server --watch db.json --port 4000
+This project uses the API Ninjas Nutrition API.
+
+For security reasons, the API key is stored in a `.env` file and is not committed to the repository.
+
+Reviewers can request the `.env` file via TripleTen Hub DM to test the full functionality.
 
 ## Links
 
