@@ -14,7 +14,7 @@ function LoginModal({ isOpen, onClose, onRegisterClick }) {
         !/^\S+@\S+\.\S+$/.test(value) ? "Invalid email address" : "",
       password: (value) =>
         value.length < 6 ? "Password must be at least 6 characters" : "",
-    }
+    },
   );
 
   const handleClose = () => {
@@ -30,11 +30,19 @@ function LoginModal({ isOpen, onClose, onRegisterClick }) {
     resetForm(); 
     onClose();
   };*/
-  const handleSubmit = () => {
-    const loggedInUser = { name: "Alaa", email: values.email };
-    login(loggedInUser);
-    onClose();
-    navigate("/profile");
+  const handleSubmit = async () => {
+    try {
+      console.log("LOGIN SUBMIT:", values); // optional proof
+
+      await login({ email: values.email, password: values.password });
+
+      resetForm();
+      onClose();
+      navigate("/profile");
+    } catch (err) {
+      console.error("LOGIN FAILED:", err);
+      // Optional: show error in UI if you have a state for it
+    }
   };
 
   return (

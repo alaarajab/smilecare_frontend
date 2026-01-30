@@ -1,6 +1,7 @@
 import { useForm } from "../../hooks/useForm";
 import ModalWithForm from "../ModalWithForm/ModalWithForm";
 import { useUser } from "../../context/UserContext";
+import { useNavigate } from "react-router-dom";
 
 function RegisterModal({ isOpen, onClose, onLoginClick }) {
   const { values, handleChange, resetForm, errors, isValid } = useForm(
@@ -18,24 +19,31 @@ function RegisterModal({ isOpen, onClose, onLoginClick }) {
         value.length < 6 ? "Password must be at least 6 characters" : "",
       confirmPassword: (value, values) =>
         value !== values.password ? "Passwords do not match" : "",
-    }
+    },
   );
   const handleClose = () => {
     resetForm();
     onClose();
   };
-  const { login } = useUser();
-  /*
-  const handleSubmit = () => {
-    console.log("Register data:", values);
+  const { register } = useUser();
+  const navigate = useNavigate();
 
-    resetForm();
-    onClose();
-  }; */
-  const handleSubmit = () => {
-    const newUser = { name: values.name, email: values.email };
-    login(newUser);
-    onClose();
+  const handleSubmit = async () => {
+    try {
+      console.log("REGISTER SUBMIT:", values);
+
+      await register({
+        name: values.name,
+        email: values.email,
+        password: values.password,
+      });
+
+      resetForm();
+      onClose();
+      navigate("/profile");
+    } catch (err) {
+      console.error("REGISTER FAILED:", err);
+    }
   };
   return (
     <ModalWithForm

@@ -34,7 +34,7 @@ function ItemCard({ id, title, description, isProfile = false, onDelete }) {
       {!isProfile && (
         <button
           className="card__bookmark"
-          onClick={() => toggleSavedItem({ id, title, description })}
+          onClick={() => toggleSavedItem(id)}
           aria-label={saved ? "Remove bookmark" : "Save card"}
         >
           <img

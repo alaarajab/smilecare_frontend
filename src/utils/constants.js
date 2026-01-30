@@ -3,3 +3,7 @@ export const DENTAL_HEALTH_THRESHOLDS = {
   highSugar: 10, // g
   minCalcium: 50, // mg
 };
+export const backendBaseUrl =
+  import.meta.env.MODE === "production"
+    ? "https://YOUR-PROD-BACKEND.com/api"
+    : "http://localhost:3001/api";

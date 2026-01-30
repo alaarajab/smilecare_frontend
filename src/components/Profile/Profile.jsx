@@ -1,57 +1,57 @@
 import { useState } from "react";
 import { useUser } from "../../context/UserContext";
-import ItemCard from "../ItemCard/ItemCard";
 import ConfirmModal from "../ConfirmModal/ConfirmModal";
+import ItemCard from "../ItemCard/ItemCard";
 import "./Profile.css";
 
 function Profile() {
-  const { savedItems, removeSavedItem } = useUser();
+  const { user, savedTips, removeSavedItem, loading } = useUser();
   const [itemToDelete, setItemToDelete] = useState(null);
-  // Collect keywords from saved item titles
-  const keywords = savedItems.map((item) => item.title.toLowerCase());
 
-  // Remove duplicates
-  const uniqueKeywords = [...new Set(keywords)];
+  if (loading) {
+    return <div className="profile-page">Loading...</div>;
+  }
 
-  // Display logic
-  const visibleKeywords = uniqueKeywords.slice(0, 2);
-  const remainingCount = uniqueKeywords.length - visibleKeywords.length;
+  if (!user) {
+    return (
+      <div className="profile-page">
+        <h1 className="profile-title">Please log in to view your profile</h1>
+      </div>
+    );
+  }
 
   const handleDeleteClick = (id) => {
     setItemToDelete(id);
   };
 
-  const confirmDelete = () => {
-    removeSavedItem(itemToDelete);
+  const confirmDelete = async () => {
+    await removeSavedItem(itemToDelete); // ✅ use remove instead of toggle
     setItemToDelete(null);
   };
+
   return (
     <div className="profile-page">
-      {savedItems.length === 0 ? (
+      {savedTips.length === 0 ? (
         <>
           <h1 className="profile-title">
-            Alaa, you haven’t saved any items yet
+            {user.name}, you haven’t saved any items yet
           </h1>
           <p className="no-items">Start bookmarking cards to see them here.</p>
         </>
       ) : (
         <>
           <h1 className="profile-title">
-            Alaa, you have {savedItems.length} saved{" "}
-            {savedItems.length === 1 ? "item" : "items"}
+            {user.name}, you have {savedTips.length} saved{" "}
+            {savedTips.length === 1 ? "item" : "items"}
           </h1>
-          <p className="profile-subtitle">
-            By keywords: {visibleKeywords.join(", ")}
-            {remainingCount > 0 &&
-              ` and ${remainingCount} other${remainingCount > 1 ? "s" : ""}`}
-          </p>
+
           <div className="saved-cards">
-            {savedItems.map((item) => (
+            {savedTips.map((id) => (
               <ItemCard
-                key={item.id}
-                id={item.id}
-                title={item.title}
-                description={item.description}
+                key={id}
+                id={id}
+                title={id}
+                description=""
                 isProfile={true}
                 onDelete={handleDeleteClick}
               />

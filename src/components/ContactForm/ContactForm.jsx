@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { useForm } from "../../hooks/useForm";
+import { submitContact } from "../../utils/api";
 import "./ContactForm.css";
 
 function ContactForm() {
@@ -24,6 +25,7 @@ function ContactForm() {
       fullName: "",
       email: "",
       phone: "",
+      message: "",
       bookAppointment: false,
       preferredDate: "",
       preferredTime: "",
@@ -32,6 +34,7 @@ function ContactForm() {
       fullName: (v) => (!v.trim() ? "Full Name is required" : ""),
       email: (v) => (!/^\S+@\S+\.\S+$/.test(v) ? "Invalid email address" : ""),
       phone: (v) => (!/^\+?\d{7,15}$/.test(v) ? "Invalid phone number" : ""),
+      message: (v) => (v.length > 500 ? "Message is too long" : ""),
       preferredDate: (v, all) =>
         all.bookAppointment && !v ? "Select a date" : "",
       preferredTime: (v, all) =>
@@ -39,16 +42,38 @@ function ContactForm() {
     },
   );
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
 
-    console.log("Form submitted:", values);
+    try {
+      // ✅ Send data to backend (map fullName -> name)
+      const payload = {
+        name: values.fullName,
+        email: values.email,
+        phone: values.phone.startsWith("+")
+          ? values.phone
+          : `+1${values.phone}`,
+        bookAppointment: values.bookAppointment,
+        message: values.message || "",
+      };
 
-    // Store the type of submission before resetting the form
-    setSubmittedType(values.bookAppointment ? "book" : "send");
+      // ✅ only include these if booking
+      if (values.bookAppointment) {
+        payload.preferredDate = values.preferredDate;
+        payload.preferredTime = values.preferredTime;
+      }
 
-    resetForm();
-    setSubmitted(true); // Show confirmation message
+      console.log("CONTACT PAYLOAD:", payload);
+
+      await submitContact(payload);
+
+      setSubmittedType(values.bookAppointment ? "book" : "send");
+      resetForm();
+      setSubmitted(true);
+    } catch (err) {
+      console.error("CONTACT FAILED:", err);
+      // optional: show error message to user
+    }
   };
 
   return (
@@ -101,7 +126,20 @@ function ContactForm() {
           />
           {errors.phone && <span className="modal__error">{errors.phone}</span>}
         </label>
-
+        <label className="modal__label">
+          Message (optional)
+          <textarea
+            name="message"
+            className="modal__input"
+            placeholder="How can we help you?"
+            value={values.message}
+            onChange={handleChange}
+            maxLength={500}
+          />
+          {errors.message && (
+            <span className="modal__error">{errors.message}</span>
+          )}
+        </label>
         <label className="contact__checkbox">
           <input
             type="checkbox"
