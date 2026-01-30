@@ -1,27 +1,29 @@
 import { useState, useEffect } from "react";
 import NutritionCard from "../NutritionCard/NutritionCard";
 import ItemCard from "../ItemCard/ItemCard";
-import data from "../../utils/db.json";
+import { getDentalTips } from "../../utils/api";
 import "./DentalEducation.css";
 
 function DentalEducation() {
   const [symptoms, setSymptoms] = useState([]);
-  const [selectedSymptom, setSelectedSymptom] = useState(null);
+  const [selectedSymptom, setSelectedSymptom] = useState("");
   const [tipsData, setTipsData] = useState(null);
 
   useEffect(() => {
-    setSymptoms(data.dentalTips);
+    getDentalTips()
+      .then((tips) => setSymptoms(tips))
+      .catch((err) => console.error("FAILED TO LOAD TIPS:", err));
   }, []);
 
   useEffect(() => {
-    if (!selectedSymptom) return;
+    if (!selectedSymptom) {
+      setTipsData(null);
+      return;
+    }
 
-    const selectedTip = data.dentalTips.find(
-      (tip) => tip.id === selectedSymptom,
-    );
-
+    const selectedTip = symptoms.find((tip) => tip.id === selectedSymptom);
     setTipsData(selectedTip || null);
-  }, [selectedSymptom]);
+  }, [selectedSymptom, symptoms]);
 
   return (
     <main className="education">
@@ -35,12 +37,13 @@ function DentalEducation() {
           <label htmlFor="symptoms">Select symptom: </label>
           <select
             id="symptoms"
-            value={selectedSymptom || ""}
+            value={selectedSymptom}
             onChange={(e) => setSelectedSymptom(e.target.value)}
           >
             <option value="" disabled>
               -- choose a symptom --
             </option>
+
             {symptoms.map((symptom) => (
               <option key={symptom.id} value={symptom.id}>
                 {symptom.title}

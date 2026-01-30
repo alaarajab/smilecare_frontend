@@ -60,3 +60,6 @@ export const submitContact = (body) => {
     body: JSON.stringify(body),
   }).then(checkResponse);
 };
+export const getDentalTips = () => {
+  return fetch(`${backendBaseUrl}/tips`).then(checkResponse);
+};
