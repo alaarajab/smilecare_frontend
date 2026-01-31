@@ -5,5 +5,5 @@ export const DENTAL_HEALTH_THRESHOLDS = {
 };
 export const backendBaseUrl =
   import.meta.env.MODE === "production"
-    ? "https://YOUR-PROD-BACKEND.com/api"
+    ? "https://api.smilecare.jumpingcrab.com"
     : "http://localhost:3001/api";
