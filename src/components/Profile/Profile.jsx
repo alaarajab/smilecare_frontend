@@ -46,12 +46,12 @@ function Profile() {
           </h1>
 
           <div className="saved-cards">
-            {savedTips.map((id) => (
+            {savedTips.map((item) => (
               <ItemCard
-                key={id}
-                id={id}
-                title={id}
-                description=""
+                key={item.id}
+                id={item.id}
+                title={item.title}
+                description={item.description}
                 isProfile={true}
                 onDelete={handleDeleteClick}
               />

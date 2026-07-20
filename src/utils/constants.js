@@ -4,6 +4,4 @@ export const DENTAL_HEALTH_THRESHOLDS = {
   minCalcium: 50, // mg
 };
 export const backendBaseUrl =
-  import.meta.env.MODE === "production"
-    ? "https://api.smilecare.jumpingcrab.com/api"
-    : "http://localhost:3001/api";
+  import.meta.env.VITE_API_URL || "http://localhost:3001/api";

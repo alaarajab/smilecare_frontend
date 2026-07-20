@@ -45,10 +45,14 @@ export const getMe = (token) => {
 };
 
 // SAVED CARDS toggle (protected)
-export const toggleSavedTip = (tipId, token) => {
-  return fetch(`${backendBaseUrl}/users/me/saved-tips/${tipId}`, {
+export const toggleSavedTip = (item, token) => {
+  return fetch(`${backendBaseUrl}/users/me/saved-tips/${item.id}`, {
     method: "PATCH",
-    headers: { Authorization: `Bearer ${token}` },
+    headers: {
+      "Content-Type": "application/json",
+      Authorization: `Bearer ${token}`,
+    },
+    body: JSON.stringify({ title: item.title, description: item.description }),
   }).then(checkResponse);
 };
 

@@ -117,7 +117,7 @@ export function UserProvider({ children }) {
   };
 
   // -------- Saved tips: Toggle --------
-  const toggleSavedItem = async (tipId) => {
+  const toggleSavedItem = async (item) => {
     const token = getToken();
     if (!token) {
       setAuthError("Please log in to save tips.");
@@ -125,31 +125,23 @@ export function UserProvider({ children }) {
     }
 
     try {
-      const result = await backendApi.toggleSavedTip(tipId, token);
+      const result = await backendApi.toggleSavedTip(item, token);
       console.log("TOGGLE RESULT:", result);
 
-      // Preferred response: { savedTips: [...] }
       if (Array.isArray(result?.savedTips)) {
         setSavedTips(result.savedTips);
         return;
       }
 
-      // Alternate response: { user: { savedTips: [...] } }
       if (result?.user) {
         syncFromUser(result.user);
         return;
-      }
-
-      // Fallback: if backend returns updated user directly
-      if (result && Array.isArray(result?.savedTips)) {
-        setSavedTips(result.savedTips);
       }
     } catch (err) {
       const message =
         typeof err === "string" ? err : err?.message || "Request failed";
       setAuthError(message);
 
-      // If unauthorized, clear session
       if (
         String(message).toLowerCase().includes("unauthorized") ||
         String(message).includes("401")
@@ -165,9 +157,7 @@ export function UserProvider({ children }) {
     if (!token) return;
 
     try {
-      const result = await backendApi.toggleSavedTip(tipId, token);
-      // toggle removes it if already saved
-
+      const result = await backendApi.toggleSavedTip({ id: tipId }, token);
       if (Array.isArray(result?.savedTips)) {
         setSavedTips(result.savedTips);
       }
@@ -176,7 +166,7 @@ export function UserProvider({ children }) {
     }
   };
 
-  const isItemSaved = (tipId) => savedTips.includes(tipId);
+  const isItemSaved = (tipId) => savedTips.some((item) => item.id === tipId);
 
   const value = useMemo(
     () => ({
