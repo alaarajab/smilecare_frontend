@@ -110,4 +110,4 @@ Reviewers can request the `.env` file via TripleTen Hub DM to test the full func
 
 - [Project Pitch Video](https://youtu.be/M2-xkqREXTo)
 
--[deployment link](https://alaarajab.github.io/smilecare_frontend/)
+-[deployment link](https://smilecare-frontend.onrender.com/)
